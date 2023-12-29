@@ -5,7 +5,7 @@
         <div class="overlay-text">
           <h1 class="custom-font">칵테일</h1>
         </div>
-        <button @click="goToCocktailMenu" class="cocktail-button">칵테일 메뉴</button>
+        <router-link to="/Menu" @click="goToCocktailMenu" class="cocktail-button">칵테일 메뉴</router-link>
         <router-link to="/login" @click="goToOrderPage" class="order-button">주문하기</router-link>
       </div>
     </div>
@@ -23,6 +23,7 @@ export default {
     goToCocktailMenu() {
       console.log('칵테일 메뉴 페이지로 이동합니다.');
       // 칵테일 메뉴 페이지로 이동하는 로직
+      this.$router.push('/Menu');
     },
     goToOrderPage() {
       console.log('주문 페이지로 이동합니다.');
