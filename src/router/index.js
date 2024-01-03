@@ -4,6 +4,9 @@ import LoginPage from "@/components/LoginPage";
 import UserLoginPage from "@/components/UserLoginPage";
 import MachineLoginPage from "@/components/MachineLoginPage";
 import MachineMainPage from "@/components/MachineMainPage";
+import MenuPage from "@/components/MenuPage";
+import SlotComp from "@/components/SlotComp";
+import MenuRoulette from "@/components/MenuRoulette";
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -23,6 +26,21 @@ const routes = [
     name: "MachineMainPage",
     component: MachineMainPage,
   },
+  {
+    path: "/Menu",
+    name: "MenuPage",
+    component: MenuPage,
+  },
+  {
+    path: "/SlotComp",
+    name: "SlotComp",
+    component: SlotComp,
+  },
+  {
+    path:"/MenuRoulette",
+    name:"MenuRoulette",
+    component:MenuRoulette,
+  }
 ];
 
 const router = createRouter({
