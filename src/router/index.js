@@ -4,6 +4,7 @@ import LoginPage from "@/components/LoginPage";
 import UserLoginPage from "@/components/UserLoginPage";
 import MachineLoginPage from "@/components/MachineLoginPage";
 import MachineMainPage from "@/components/MachineMainPage";
+import TestConnectPage from  "@/components/TestConnectPage";
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -22,6 +23,12 @@ const routes = [
     path: "/machine",
     name: "MachineMainPage",
     component: MachineMainPage,
+  },
+
+  {
+    path: "/TestConnectPage",
+    name: "TestConnectPage",
+    component: TestConnectPage,
   },
 ];
 
