@@ -38,7 +38,8 @@
       <!--룰렛창-->
       <div class="Roulette-wrap" v-show="RouletCheck">
         <div class="Roulette-container">
-          <MenuRoulette></MenuRoulette>
+          <MenuRoulette :CocktailsList="cocktails"
+          v-on:SelectCock="SelectCocktail"></MenuRoulette>
           <!--룰렛창 버튼-->
           <div class="RouletteBtns">
             <button @click="RouletteOpen">닫기</button>

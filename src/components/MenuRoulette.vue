@@ -9,7 +9,7 @@
           <!-- 값 영역-->
           <div class="item-wrapper">
             <div class="item" v-for="(item,index) in items" v-bind:key="item"
-                    v-bind:style="itemStyles[index]">{{item.value}}</div>
+                    v-bind:style="itemStyles[index]">{{item.name}}</div>
           </div>
           <!-- 선 영역-->
           <div class="line-wrapper">
@@ -28,6 +28,10 @@
 
 <script>
   export default {
+    //술 리스트 가져오기
+    props:{
+      CocktailsList : Array
+    },
     data(){
       return {
         items:[
@@ -66,12 +70,23 @@
       }
     },
     methods:{
+      //선택된 결과 전송
+      SendCurrnet(id){
+        this.$emit('SelectCock',id);
+      },
       play(){
         this.count++;
         this.currnet = Math.floor(Math.random() * this.items.length);
+
+        //돌림판이 멈춘 3초뒤에 선택된 결과를 전송 (작동 안함) ??
+        //setTimeout(this.SendCurrnet,3000,this.currnet);
+        this.$emit('SelectCock',this.currnet);
       }
     },
     mounted(){
+      //Props 배열을 items로 복사
+      this.items = this.CocktailsList.slice();
+
       this.items.forEach((el,idx)=>{
         //itemStyles 정의
         this.itemStyles.push({
