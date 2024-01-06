@@ -1,3 +1,3 @@
 <template>
-  User Login Page
+    Base Deatil Page
 </template>
