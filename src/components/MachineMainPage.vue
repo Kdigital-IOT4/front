@@ -4,23 +4,34 @@
     <router-link to="/CockTailPage" class="HedBtn2">베이스 등록</router-link>
     <router-link to="/CockTailPage" class="HedBtn3">재료 등록</router-link>
     <div></div>
-    <router-link to="/CockTailPage" class="HedBtn4">개시</router-link>
+    <button class="HedBtn4" @click="OnModal">개시</button>
   </div>
-
+ 
   <div class="container-MachineInfo">
     <div class="MachinInfo">
         <h1>MachinName</h1>
         <p>MachinInfo</p>
     </div>
+    <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
   </div>
 
   <router-link to="/CockTailPage" class="HomeBtn">홈</router-link>
 </template>
 
 <script>
+import MachineStartModal from './MachineStartModal.vue';
 export default {
+  components: { MachineStartModal },
   data(){
+    return{
+      show : false
+    };
+  },
 
+  methods:{
+    OnModal(){
+        this.show = !this.show;
+    },
   }
 };
 </script>

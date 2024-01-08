@@ -4,10 +4,11 @@
         <router-link to="/CockTailPage" class="HedBtn2">베이스 등록</router-link>
         <router-link to="/CockTailPage" class="HedBtn3">재료 등록</router-link>
         <div></div>
-        <router-link to="/CockTailPage" class="HedBtn4">개시</router-link>
+        <button class="HedBtn4" @click="OnModal">개시</button>
     </div>
-
+    
     <div class="container-PreView">
+        <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
         <div v-for="x in 5" v-bind:key="x">
             <div class="PreViewCockTail" @click="toggleExpand(x)">
                 <img class="PreViewImg" src="../assets/img/a.jpg">
@@ -21,16 +22,22 @@
 </template>
 
 <script>
+import MachineStartModal from './MachineStartModal.vue';
 export default {
+  components: { MachineStartModal },
   data() {
     return {
-      expandableElements: []
+      expandableElements: [],
+      show : true
     };
   },
   mounted() {
         this.initexpand_contents();
   },
   methods: {
+    OnModal(){
+        this.show = !this.show;
+    },
     initexpand_contents(){
         var buttons = document.querySelectorAll(".PreViewCockTail")
         buttons.forEach((button, index) => {
@@ -106,5 +113,12 @@ export default {
     left: 10em;
     top:20em;
     grid-column-gap: 5em;
+}
+
+.Modal{
+    position: fixed;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
 }
 </style>

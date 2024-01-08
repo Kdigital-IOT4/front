@@ -1,25 +1,23 @@
 <template>
-    
     <div class="container-hed">
         <router-link to="/CockTailPage" class="HedBtn1">칵테일 미리보기</router-link>
         <router-link to="/CockTailPage" class="HedBtn2">베이스 등록</router-link>
         <router-link to="/CockTailPage" class="HedBtn3">재료 등록</router-link>
         <div></div>
         <button class="HedBtn4" @click="OnModal">개시</button>
-        
     </div>
 
-    <div class="container-BaseInput">
+   
+    <div class="container-StuffInput">
         <machine-start-modal v-show="show" v-on:close="OnModal"></machine-start-modal>
+        <p>등록된 재료 목록</p>
         <div class="BaseList">
             <div v-for="x in 5" v-bind:key="x">
-                <p>{{ x }}.진</p>
+                <p>{{ x }}.귤</p>
             </div>
         </div>
-
         <div class="InputGroup">
-            <input v-model="BaseSeq" placeholder="베이스 번호를 입력하세요.">
-            <input class="InputBaseLine" v-model="Machine_Base_Line" placeholder="몇번째에 넣겠습니까?">
+            <input class="InputStuffName" v-model="Stuff_Name" placeholder="등록할 재료 이름을 입력하세요">
         </div>
 
         <button class="RegistrationBtn" @click="submitBase">등록하기</button>
@@ -30,28 +28,21 @@
 <script>
 import MachineStartModal from './MachineStartModal.vue';
 //import axios from 'axios';
+//현재 들어가있는 재료 리스트를 보여주면 좋을 것 같음
 
 export default {
   components: { MachineStartModal },
   data() {
     return {
-      BaseSeq:'',
-      Machine_Base_Line:'',
-      BaseList:[],
+      Stuff_Name:'',
       show : false
     };
   },
   mounted() {
-        this.GetBaseDataList();
   },
   methods: {
     OnModal(){
         this.show = !this.show;
-    },
-    GetBaseDataList(){
-        //베이스 리스트 받아와서 보여줌
-        //axios.Get('');
-        
     },
     submitBase(){
         //axios.post('');
@@ -89,7 +80,7 @@ export default {
     padding-top: 2em;
   }
 
-.container-BaseInput{
+.container-StuffInput{
     background: gray;
     position:fixed;
     left: 45em;
@@ -100,11 +91,11 @@ export default {
 }
 
 .InputGroup{
-    margin: 10em;
+    margin: 5em;
 }
 
-.InputBaseLine{
-    margin-top: 3em;
+.InputStuffName{
+    margin-top: 13em;
 }
 
 .RegistrationBtn{
@@ -113,9 +104,4 @@ export default {
     height: 5em;
 }
 
-.BaseList{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin-top: 5em;
-}
 </style>
