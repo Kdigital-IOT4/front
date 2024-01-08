@@ -65,49 +65,6 @@ export const useControllerStore = defineStore('controllerStore', {
     ]
   }),
   actions: {
-    // async updateBottleList(no) {
-    //   try {
-    //     await setDoc(
-    //       doc(
-    //         db,
-    //         "shop",
-    //         auth.currentUser.uid,
-    //         "controller",
-    //         (no + 1).toString()
-    //       ),
-    //       this.documents[no]
-    //     );
-
-    //   } catch (error) {
-    //     console.log(error);
-    //   } finally {
-    //   }
-
-    // },
-    // async getBottleList() {
-    //   try {
-    //     const querySnapshot = await getDocs(
-    //       collection(db, "shop", auth.currentUser.uid, "controller")
-    //     );
-    //     querySnapshot.forEach((document) => {
-
-    //       this.documents.forEach(doc => {
-
-    //         if (doc.no == document.data().no) {
-
-    //           doc.bottle = document.data().bottle
-    //           doc.empty = document.data().empty
-    //           doc.load = document.data().load
-    //           doc.selected = document.data().selected
-    //         }
-    //       })
-    //     });
-    //     console.log(this.documents)
-    //   } catch (error) {
-    //     console.log(error);
-    //   } finally {
-    //   }
-    // },
 
     async controlPositionNext() {
       this.positionNo++
@@ -174,10 +131,10 @@ export const useControllerStore = defineStore('controllerStore', {
 
 
     async startSocket() {
-      this.ip = localStorage.ip
+      // this.ip = localStorage.ip
       try {
-        console.log("Socket is " + this.ip + ":" + this.port);
-        this.wsSource = await new WebSocket("ws://" + this.ip + ":" + this.port, [
+        console.log("Socket is " + "172.30.1.78" + ":" + this.port);
+        this.wsSource = await new WebSocket("ws://" + "172.30.1.78" + ":" + this.port, [
           "arduino",
         ]);
       } catch (exception) {

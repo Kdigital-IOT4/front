@@ -10,26 +10,41 @@
     <p>
       메시지: {{ controllerStore.wsmsg }}
     </p>
+    <input v-model="messageInput" placeholder="Enter message" />
+    <button @click="sendMessage">Send Message</button>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { useControllerStore } from '@/stores/controller'; // 정확한 store 경로로 수정
+import { useControllerStore } from '@/stores/controller';
 
 export default defineComponent({
   name: 'SocketTest',
   setup() {
     const controllerStore = useControllerStore();
+    let messageInput = '';
 
     const startSocket = async () => {
-      // 사용할 경우: await controllerStore.startSocket();
-      controllerStore.startSocket(); // 비동기 처리가 필요하지 않다면 이것으로 충분
+      controllerStore.startSocket();
+    };
+
+    const sendMessage = () => {
+      // Directly handle sending the message without using controllerStore.sendMessage
+      if (controllerStore.connected && controllerStore.wsSource) {
+        controllerStore.wsSource.send(messageInput);
+      } else {
+        console.error('WebSocket is not connected.');
+      }
+      // Clear the input field after sending the message
+      messageInput = '';
     };
 
     return {
       controllerStore,
+      messageInput,
       startSocket,
+      sendMessage,
     };
   },
 });
