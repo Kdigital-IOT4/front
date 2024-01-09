@@ -10,7 +10,7 @@ import MachineRegisterPage from "@/components/MachineRegisterPage"
 import CocktailMainPage from "@/components/CocktailMainPage"
 import PaymentPage from "@/components/PaymentPage"
 import PhoneNumberPage from "@/components/PhoneNumberPage"
-
+import BillPage from "@/components/BillPage"
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -66,7 +66,18 @@ const routes = [
     path: "/cocktail/phoneNumber",
     name: "PhoneNumberPage",
     component: PhoneNumberPage,
-  }
+  },
+  {
+    path: "/cocktail/phoneNumber",
+    name: "PhoneNumberPage",
+    component: PhoneNumberPage,
+  },
+
+  {
+    path: "/cocktail/bill",
+    name: "BillPage",
+    component: BillPage,
+  },
 ];
 
 const router = createRouter({
