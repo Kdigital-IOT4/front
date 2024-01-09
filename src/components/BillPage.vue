@@ -1,6 +1,4 @@
 <template>
-    BillPage
-</template>
   <div class="receipt-container">
     <h2>영수증</h2>
     <div class="receipt-content">
@@ -21,6 +19,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
