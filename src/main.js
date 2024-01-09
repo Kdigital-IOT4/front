@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { createPinia } from 'pinia'; // Pinia import 추가
+import { createPinia } from 'pinia';
 import router from '@/router/index';
-
+import 'animate.css'; 
 // Vue 애플리케이션 생성
 const app = createApp(App);
 
