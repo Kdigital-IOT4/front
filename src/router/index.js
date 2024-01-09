@@ -4,7 +4,7 @@ import LoginPage from "@/components/LoginPage";
 import UserLoginPage from "@/components/UserLoginPage";
 import MachineLoginPage from "@/components/MachineLoginPage";
 import MachineMainPage from "@/components/MachineMainPage";
-import TestConnectPage from  "@/components/TestConnectPage";
+import TestConnectPage from "@/components/TestConnectPage";
 import BaseDetailPage from "@/components/BaseDetailPage";
 import BaseRegistrationPage from "@/components/BaseRegistrationPage";
 import BillPage from "@/components/BillPage";
@@ -17,13 +17,11 @@ import ErrorPage from "@/components/ErrorPage";
 import PayMentPage from "@/components/PayMentPage";
 import PhoneNumberInputPage from "@/components/PhoneNumberInputPage";
 import UserSignUpPage from "@/components/UserSignUpPage";
-import TestConnectPage from "@/components/TestConnectPage";
 import UserRegisterPage from "@/components/UserRegisterPage";
 import MachineRegisterPage from "@/components/MachineRegisterPage";
 import CocktailMainPage from "@/components/CocktailMainPage";
 import PaymentPage from "@/components/PaymentPage";
 import PhoneNumberPage from "@/components/PhoneNumberPage";
-import BillPage from "@/components/BillPage";
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -120,7 +118,8 @@ const routes = [
     path: "/UserSignUpPage",
     name: "UserSignUpPage",
     component: UserSignUpPage,
-  }
+  },
+  {
     path: "/register/user",
     name: "UserRegisterPage",
     component: UserRegisterPage,
