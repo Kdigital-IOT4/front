@@ -32,7 +32,7 @@ export default defineComponent({
     const sendMessage = () => {
       // Directly handle sending the message without using controllerStore.sendMessage
       if (controllerStore.connected && controllerStore.wsSource) {
-        controllerStore.wsSource.send(messageInput);
+        controllerStore.sendCommand("J=G53X100Y0Z0F10000");
       } else {
         console.error('WebSocket is not connected.');
       }
