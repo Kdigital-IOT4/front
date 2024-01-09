@@ -17,6 +17,13 @@ import ErrorPage from "@/components/ErrorPage";
 import PayMentPage from "@/components/PayMentPage";
 import PhoneNumberInputPage from "@/components/PhoneNumberInputPage";
 import UserSignUpPage from "@/components/UserSignUpPage";
+import TestConnectPage from "@/components/TestConnectPage";
+import UserRegisterPage from "@/components/UserRegisterPage";
+import MachineRegisterPage from "@/components/MachineRegisterPage";
+import CocktailMainPage from "@/components/CocktailMainPage";
+import PaymentPage from "@/components/PaymentPage";
+import PhoneNumberPage from "@/components/PhoneNumberPage";
+import BillPage from "@/components/BillPage";
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -114,6 +121,45 @@ const routes = [
     name: "UserSignUpPage",
     component: UserSignUpPage,
   }
+    path: "/register/user",
+    name: "UserRegisterPage",
+    component: UserRegisterPage,
+  },
+
+  {
+    path: "/register/machine",
+    name: "MachineRegisterPage",
+    component: MachineRegisterPage,
+  },
+
+  {
+    path: "/cocktail/main",
+    name: "CocktailMainPage",
+    component: CocktailMainPage,
+  },
+
+  {
+    path: "/cocktail/payment",
+    name: "PaymentPage",
+    component: PaymentPage,
+  },
+
+  {
+    path: "/cocktail/phoneNumber",
+    name: "PhoneNumberPage",
+    component: PhoneNumberPage,
+  },
+  {
+    path: "/cocktail/phoneNumber",
+    name: "PhoneNumberPage",
+    component: PhoneNumberPage,
+  },
+
+  {
+    path: "/cocktail/bill",
+    name: "BillPage",
+    component: BillPage,
+  },
 ];
 
 const router = createRouter({
