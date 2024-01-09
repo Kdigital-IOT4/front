@@ -4,7 +4,13 @@ import LoginPage from "@/components/LoginPage";
 import UserLoginPage from "@/components/UserLoginPage";
 import MachineLoginPage from "@/components/MachineLoginPage";
 import MachineMainPage from "@/components/MachineMainPage";
-import TestConnectPage from  "@/components/TestConnectPage";
+import TestConnectPage from "@/components/TestConnectPage";
+import UserRegisterPage from "@/components/UserRegisterPage";
+import MachineRegisterPage from "@/components/MachineRegisterPage";
+import CocktailMainPage from "@/components/CocktailMainPage";
+import PaymentPage from "@/components/PaymentPage";
+import PhoneNumberPage from "@/components/PhoneNumberPage";
+import BillPage from "@/components/BillPage";
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -29,6 +35,47 @@ const routes = [
     path: "/TestConnectPage",
     name: "TestConnectPage",
     component: TestConnectPage,
+  },
+
+  {
+    path: "/register/user",
+    name: "UserRegisterPage",
+    component: UserRegisterPage,
+  },
+
+  {
+    path: "/register/machine",
+    name: "MachineRegisterPage",
+    component: MachineRegisterPage,
+  },
+
+  {
+    path: "/cocktail/main",
+    name: "CocktailMainPage",
+    component: CocktailMainPage,
+  },
+
+  {
+    path: "/cocktail/payment",
+    name: "PaymentPage",
+    component: PaymentPage,
+  },
+
+  {
+    path: "/cocktail/phoneNumber",
+    name: "PhoneNumberPage",
+    component: PhoneNumberPage,
+  },
+  {
+    path: "/cocktail/phoneNumber",
+    name: "PhoneNumberPage",
+    component: PhoneNumberPage,
+  },
+
+  {
+    path: "/cocktail/bill",
+    name: "BillPage",
+    component: BillPage,
   },
 ];
 

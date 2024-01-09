@@ -4,7 +4,7 @@
             <router-link to="/login/user" @click="goToUserLoginPage" class="userLogin-button">유저</router-link>
             <router-link to="/login/machine" @click="goToMachineLoginPage" class="machineLogin-button">기계</router-link>
         </div>
-    </div>
+    </div>  
 </template>
 
 <script>
