@@ -1,15 +1,15 @@
 <template>
     <div class="container-hed">
-        <router-link to="/CockTailPage" class="HedBtn1">칵테일 미리보기</router-link>
-        <router-link to="/CockTailPage" class="HedBtn2">베이스 등록</router-link>
-        <router-link to="/CockTailPage" class="HedBtn3">재료 등록</router-link>
+        <router-link to="/CocktailMachinePreviewPage" class="HedBtn1">칵테일 미리보기</router-link>
+        <router-link to="/BaseRegistrationPage" class="HedBtn2">베이스 등록</router-link>
+        <router-link to="/StuffRegistrationPage" class="HedBtn3">재료 등록</router-link>
         <div></div>
         <button class="HedBtn4" @click="OnModal">개시</button>
     </div>
     
     <div class="container-PreView">
         <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
-        <div v-for="x in 5" v-bind:key="x">
+        <div v-for="x in 7" v-bind:key="x">
             <div class="PreViewCockTail" @click="toggleExpand(x)">
                 <img class="PreViewImg" src="../assets/img/a.jpg">
                 <p>Name</p>
@@ -23,26 +23,61 @@
 
 <script>
 import MachineStartModal from './MachineStartModal.vue';
+import axios from 'axios';
+
 export default {
   components: { MachineStartModal },
   data() {
     return {
       expandableElements: [],
-      show : true
+      show : false,
+      CocktailNum : 0,
     };
   },
   mounted() {
+        this.GetCockTailNum();
+        this.GetCockTailBaseData();
         this.initexpand_contents();
   },
   methods: {
     OnModal(){
         this.show = !this.show;
     },
+    GetCockTailNum(){
+        axios.get('http://3.38.22.113:8080/api/v1/cocktail/listCocktail')
+            .then((response) =>{
+                const dataArray = [];
+                dataArray.push(...response.data);
+                
+                this.CocktailNum = dataArray.length;
+                //kr_Name / en_Name / fileURL / seq
+                console.log(dataArray);
+                console.log(this.CocktailNum); 
+                //개수 구해서 1~CocktailNUm까지 디테일 정보를 가져와서 클릭하면 보여주는 곳에 표시
+                
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+            
+    },
+    GetCockTailBaseData(){ //DB에 등록되어 있는 칵테일의 베이스 정보를 가져옴
+        axios.get('http://3.38.22.113:8080/api/v1/cocktail/1')
+            .then((response) =>{
+                const dataArray = [];
+                //response.data;
+                //dataArray.push(...response.data);
+                response;
+                console.log(dataArray); 
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+    },
     initexpand_contents(){
         var buttons = document.querySelectorAll(".PreViewCockTail")
         buttons.forEach((button, index) => {
       var contentId = 'expand-content' + index;
-      console.log(index);
       this.expandableElements.push(contentId);
     });
     },
@@ -61,34 +96,6 @@ export default {
 </script>
 
 <style>
-.container-hed{
-    position:fixed;
-    left:0;
-    top:0;
-    display: grid;
-    grid-template-rows: 100px;
-    grid-template-columns: 10em 10em 10em 50em 10em;
-    background-color: aqua;
-  }
-  
-  .HedBtn1{
-    background-color: brown;
-    padding-top: 2em;
-  }
-  .HedBtn2{
-    background-color: rgb(130, 245, 84);
-    padding-top: 2em;
-  }
-  .HedBtn3{
-    background-color: rgb(107, 189, 255);
-    padding-top: 2em;
-  }
-  .HedBtn4{
-    background-color: rgb(240, 86, 245);
-    padding-top: 2em;
-  }
-
-
 .PreViewCockTail{
     width: 10em;
     height: 11em;
@@ -113,6 +120,7 @@ export default {
     left: 10em;
     top:20em;
     grid-column-gap: 5em;
+    grid-row-gap: 8em;
 }
 
 .Modal{
