@@ -1,4 +1,6 @@
 <template>
+  User Login Page
+</template>
   <div id="app-machineLogin">
     <div class="container-machineLogin-titleBox">
       <h1>칵테일</h1>
