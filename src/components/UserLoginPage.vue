@@ -1,10 +1,9 @@
 <template>
-  User Login Page
-</template>
   <div id="app-machineLogin">
     <div class="container-machineLogin-titleBox">
       <h1>칵테일</h1>
     </div>
+
     <div class="container-machineLogin">
       <form @submit.prevent="submitForm">
         <div class="form-group">
