@@ -21,6 +21,7 @@ import UserRegisterPage from "@/components/UserRegisterPage";
 import MachineRegisterPage from "@/components/MachineRegisterPage";
 import CocktailMainPage from "@/components/CocktailMainPage";
 import PhoneNumberPage from "@/components/PhoneNumberPage";
+import CocktailMachinePreviewPage from "@/components/CocktailMachinePreviewPage"
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -152,6 +153,13 @@ const routes = [
     name: "BillPage",
     component: BillPage,
   },
+
+  {
+    path: "/CocktailMachinePreviewPage",
+    name: "CocktailMachinePreviewPage",
+    component: CocktailMachinePreviewPage,
+  },
+
 ];
 
 const router = createRouter({
