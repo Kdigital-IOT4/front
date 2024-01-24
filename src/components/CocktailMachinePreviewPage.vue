@@ -30,12 +30,13 @@ export default {
     return {
       expandableElements: [],
       show : false,
-      cocktails : []
+      cocktails : [],
+      ElementsIndex : 0,
     };
   },
   mounted() {
         this.fetchCocktails();
-        this.initexpand_contents();
+        
   },
   methods: {
     OnModal(){
@@ -47,6 +48,10 @@ export default {
         const data = await response.json();
         
         this.cocktails = data;
+        
+        this.ElementsIndex = this.cocktails.length;
+        this.initexpand_contents();
+        this.fetchCocktailDetails(1);
       } catch (error) {
         console.error('API 요청 중 오류 발생:', error);
       }
@@ -67,14 +72,12 @@ export default {
       }
     },
     initexpand_contents(){
-        var buttons = document.querySelectorAll(".PreViewCockTail")
-        buttons.forEach((button, index) => {
-      var contentId = 'expand-content' + index;
-      this.expandableElements.push(contentId);
-    });
+      for(var i = 0;i<this.ElementsIndex;i++){
+        var contentId = 'expand-content' + i;
+        this.expandableElements.push(contentId);
+      }
     },
     toggleExpand(i) {
-        console.log(i);
         var expandContent = document.getElementById(this.expandableElements[i-1]);
             if (expandContent.style.display === "block") {
                 expandContent.style.display = "none";
