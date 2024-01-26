@@ -14,7 +14,8 @@
                 <img class="PreViewImg" :src="getImageUrl(cocktail.fileURL)">
                 <p>{{cocktail.kr_Name}}</p>
                 <div class="expand-content" :id="'expand-content'+ (cocktail.seq-1)">
-                    <p>여기에 보여질 내용입니다.</p>
+                    <p>가격 : {{CocktailsDetails[cocktail.seq-1].price}}</p>
+                    <p>도수 : {{CocktailsDetails[cocktail.seq-1].alcohol}}</p>
                 </div>
             </div>
         </div>
@@ -31,6 +32,7 @@ export default {
       expandableElements: [],
       show : false,
       cocktails : [],
+      CocktailsDetails : [],
       ElementsIndex : 0,
     };
   },
@@ -51,7 +53,8 @@ export default {
         
         this.ElementsIndex = this.cocktails.length;
         this.initexpand_contents();
-        this.fetchCocktailDetails(1);
+        await Promise.all(this.cocktails.map(cocktail => this.fetchCocktailDetails(cocktail.seq)));
+        
       } catch (error) {
         console.error('API 요청 중 오류 발생:', error);
       }
@@ -67,6 +70,8 @@ export default {
         const cocktailDetails = await response.json();
         
         console.log(`Cocktail Details for seq ${seq}:`, cocktailDetails);
+        this.CocktailsDetails[seq-1] = {price:cocktailDetails.cocktailDetail.price,alcohol:cocktailDetails.cocktailDetail.alcohol};
+        
       } catch (error) {
         console.error('API 요청 중 오류 발생:', error);
       }

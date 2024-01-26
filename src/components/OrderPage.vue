@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import Header from "@/components/CocktailHeader.vue";
+//import Header from "@/components/CocktailHeader.vue";
 
 export default {
   components: {
-    Header
+    //Header
   },
   data() {
     return {
