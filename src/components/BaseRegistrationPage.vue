@@ -78,7 +78,7 @@ export default {
     display: grid;
     grid-template-rows: 6em;
     grid-template-columns: repeat(5, 20%);
-    background-color: rgb(255, 247, 211);
+    background-color: beige;
     position:fixed;
     left:0;
     top:0;
@@ -149,10 +149,17 @@ export default {
   box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
 }
 
+.HedBtn4 {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .HedBtn4:before {
   content: '개시';
-  line-height : 5em;
-  background-color: #a3ff7e;
+  line-height : 6em;
+  background-color: greenyellow;
   display: block;
   width: 12em;
   height: 6em;
