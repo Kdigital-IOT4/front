@@ -23,6 +23,7 @@ import CocktailMainPage from "@/components/CocktailMainPage";
 import PhoneNumberPage from "@/components/PhoneNumberPage";
 import CocktailMachinePreviewPage from "@/components/CocktailMachinePreviewPage"
 import OrderPage from "@/components/OrderPage"
+import StuffRegistrationPage from "@/components/StuffRegistrationPage"
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -31,6 +32,12 @@ const routes = [
     path: "/login/user",
     name: "UserLoginPage",
     component: UserLoginPage,
+  },
+
+  {
+    path: "/StuffRegistrationPage",
+    name: "StuffRegistrationPage",
+    component: StuffRegistrationPage,
   },
   
   {

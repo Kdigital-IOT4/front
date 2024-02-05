@@ -1,5 +1,5 @@
 <template>
-    
+  <div class="fade-in-page">
     <div class="container-hed">
         <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
         <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
@@ -23,7 +23,7 @@
 
         <button class="RegistrationBtn" @click="submitBase">등록하기</button>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -206,5 +206,27 @@ export default {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin-top: 5em;
+}
+
+.fade-in-page{
+  animation: fadein 3s;
+  -webkit-animation: fadein 3s;
+}
+@keyframes fadein {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 </style>

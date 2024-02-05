@@ -40,6 +40,9 @@ export default {
       // 확인 버튼 클릭 시 수행할 로직
       console.log('영수증 확인');
       // 여기에 실제 동작 추가
+
+       // (임시) 칵테일 메인 페이지로 이동
+       this.$router.push('/cocktail/main');
     }
   }
 };

@@ -7,7 +7,7 @@
         <router-link to="/recommendations">추천칵테일</router-link>
         <router-link to="/special-order">스페셜오더</router-link>
         <router-link to="/events">이벤트</router-link>
-        <router-link to="/orders" class="order-link">주문</router-link>
+        <router-link to="/OrderPage" class="order-link">주문</router-link>
       </nav>
     </div>
   </header>

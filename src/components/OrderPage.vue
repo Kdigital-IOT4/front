@@ -11,6 +11,8 @@
         <!-- Add more details if needed -->
       </div>
     </div>
+
+    <router-link to="/cocktail/payment">결제창이동</router-link>
   </div>
 </template>
 

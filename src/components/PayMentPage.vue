@@ -10,6 +10,7 @@
       </div>
     </div>
   </div>
+  <router-link to="/cocktail/phoneNumber">폰넘버입력</router-link>
 </template>
 
 <style>
@@ -53,6 +54,8 @@ export default {
   methods: {
     cancel() {
       // 취소 버튼 클릭 시 수행할 로직 추가
+      // 주문 페이지로 돌아감
+      this.$router.push('/OrderPage');
     }
   }
 };

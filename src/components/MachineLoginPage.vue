@@ -1,7 +1,7 @@
 <template>
   <div id="app-machineLogin">
     <div class="container-machineLogin-titleBox">
-      <h1>칵테일</h1>
+      <h1>머신 로그인</h1>
     </div>
     <div class="container-machineLogin">
       <form @submit.prevent="submitForm">
@@ -16,10 +16,11 @@
         </div>
 
         <div class="form-group">
-          <input type="submit" value="Login">
+          <input type="submit" value="Login" @click="gotoMachineMainPage">
         </div>
       </form>
 
+      <router-link to="/register/machine" class="MachineRegister-button">머신등록</router-link>
       <router-link to="/login" class="back-button">돌아가기</router-link>
     </div>
   </div>
@@ -36,6 +37,10 @@ export default {
     };
   },
   methods: {
+    // 임시 페이지 이동 , 밑의 서버 응답 성공시 페이지 이동으로 변경해야함
+    gotoMachineMainPage(){
+      this.$router.push('/machine');
+    },
     async submitForm() {
       try {
         const response = await axios.post('http://localhost:8080/api/v1/user/machine/login', {
@@ -118,4 +123,10 @@ export default {
     text-decoration: none;
     color: black;
 }
+
+.MachineRegister-button{
+    text-decoration: none;
+    color: black;
+}
+
 </style>

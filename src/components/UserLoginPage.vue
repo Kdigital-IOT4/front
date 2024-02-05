@@ -21,6 +21,7 @@
         </div>
       </form>
 
+      <router-link to="/register/user" class="UserRegister-button">회원가입</router-link>
       <router-link to="/login" class="back-button">돌아가기</router-link>
     </div>
   </div>
@@ -116,6 +117,12 @@ export default {
   }
 
 .back-button{
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.UserRegister-button{
     text-decoration: none;
     color: black;
 }
