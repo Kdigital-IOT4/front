@@ -15,7 +15,7 @@
     <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
   </div>
 
-  <router-link to="/CockTailPage" class="HomeBtn">홈</router-link>
+  <router-link to="/" class="HomeBtn">홈</router-link>
 </template>
 
 <script>
