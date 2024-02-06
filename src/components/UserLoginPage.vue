@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-group">
-          <input type="submit" value="Login">
+          <input type="submit" value="Login" @click="gotoCocktailMain">
         </div>
       </form>
 
@@ -38,6 +38,9 @@ export default {
     };
   },
   methods: {
+    gotoCocktailMain() {
+            this.$router.push('/cocktail/main'); //칵테일 페이지로 이동
+    },
     async submitForm() {
       try {
         const response = await axios.post('http://localhost:8080/api/v1/user/machine/login', {
