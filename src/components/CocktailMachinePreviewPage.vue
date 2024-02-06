@@ -13,7 +13,7 @@
             <div class="PreViewCockTail" @click="toggleExpand(cocktail.seq)">
                 <img class="PreViewImg" :src="getImageUrl(cocktail.fileURL)">
                 <p>{{cocktail.kr_Name}}</p>
-                <div class="expand-content" :id="'expand-content'+ (cocktail.seq-1)">
+                <div class="expand-content" v-if="CocktailsDetails[cocktail.seq - 1]" :id="'expand-content'+ (cocktail.seq-1)">
                     <p>가격 : {{CocktailsDetails[cocktail.seq-1].price}}</p>
                     <p>도수 : {{CocktailsDetails[cocktail.seq-1].alcohol}}</p>
                 </div>
@@ -38,7 +38,6 @@ export default {
   },
   mounted() {
         this.fetchCocktails();
-        
   },
   methods: {
     OnModal(){
@@ -52,9 +51,8 @@ export default {
         this.cocktails = data;
         
         this.ElementsIndex = this.cocktails.length;
-        this.initexpand_contents();
         await Promise.all(this.cocktails.map(cocktail => this.fetchCocktailDetails(cocktail.seq)));
-        
+        this.initexpand_contents();
       } catch (error) {
         console.error('API 요청 중 오류 발생:', error);
       }
@@ -69,7 +67,6 @@ export default {
         const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`);
         const cocktailDetails = await response.json();
         
-        console.log(`Cocktail Details for seq ${seq}:`, cocktailDetails);
         this.CocktailsDetails[seq-1] = {price:cocktailDetails.cocktailDetail.price,alcohol:cocktailDetails.cocktailDetail.alcohol};
         
       } catch (error) {
