@@ -1,11 +1,11 @@
 <template>
-    
+  <div class="fade-in-page">
     <div class="container-hed">
-        <router-link to="/CocktailMachinePreviewPage" class="HedBtn1">칵테일 미리보기</router-link>
-        <router-link to="/BaseRegistrationPage" class="HedBtn2">베이스 등록</router-link>
-        <router-link to="/StuffRegistrationPage" class="HedBtn3">재료 등록</router-link>
+        <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
+        <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
+        <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
         <div></div>
-        <button class="HedBtn4" @click="OnModal">개시</button>
+        <button class="HedBtn4" @click="OnModal"></button>
     </div>
 
     <div class="container-BaseInput">
@@ -23,7 +23,7 @@
 
         <button class="RegistrationBtn" @click="submitBase">등록하기</button>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -78,30 +78,105 @@ export default {
     display: grid;
     grid-template-rows: 6em;
     grid-template-columns: repeat(5, 20%);
-    background-color: aqua;
+    background-color: beige;
     position:fixed;
     left:0;
     top:0;
     width: 100%;
   }
   
-  .HedBtn1{
-    background-color: brown;
-    padding-top: 2em;
-  }
-  .HedBtn2{
-    background-color: rgb(84, 135, 245);
-    padding-top: 2em;
-  }
-  .HedBtn3{
-    background-color: rgb(107, 189, 255);
-    padding-top: 2em;
-  }
-  .HedBtn4{
-    background-color: rgb(240, 86, 245);
-    padding-top: 2em;
-    cursor: pointer;
-  }
+  .HedBtn1:before {
+    content: '칵테일 미리보기';
+    background: #a3ff7e;
+    line-height : 5em;
+    display: block;
+    width: 10em;
+    height: 5em;
+    border-radius: 5px;
+    transition: all 0.2s ;
+    margin-left: 4em;
+    margin-top:0.5em;
+}
+.HedBtn1:hover:before {
+  margin-top:0.5em;
+  margin-left: 4em;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+.HedBtn2:before {
+  content: '베이스 등록';
+  background: #11a8ff;
+  line-height : 5em;
+  display: block;
+  width: 10em;
+  height: 5em;
+  border-radius: 5px;
+  transition: all 0.2s ;
+  margin-left: 4em;
+  margin-top:0.5em;
+}
+.HedBtn2:hover:before {
+  margin-top:0.5em;
+  margin-left: 4em;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+.HedBtn3:before {
+  content: '재료 등록';
+  background: #ec5dff;
+  line-height : 5em;
+  display: block;
+  width: 10em;
+  height: 5em;
+  border-radius: 5px;
+  transition: all 0.2s ;
+  margin-left: 4em;
+  margin-top:0.5em;
+}
+
+.HedBtn3:hover:before {
+  margin-top:0.5em;
+  margin-left: 4em;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+.HedBtn4 {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.HedBtn4:before {
+  content: '개시';
+  line-height : 6em;
+  background-color: greenyellow;
+  display: block;
+  width: 12em;
+  height: 6em;
+  border-radius: 5px;
+  transition: all 0.2s ;
+  margin-left: 4em;
+  margin-top:0.5em;
+}
+
+.HedBtn4:hover:before {
+  margin-top:0.5em;
+  margin-left: 4em;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
 
 .container-BaseInput{
     background: gray;
@@ -131,5 +206,27 @@ export default {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin-top: 5em;
+}
+
+.fade-in-page{
+  animation: fadein 3s;
+  -webkit-animation: fadein 3s;
+}
+@keyframes fadein {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 </style>

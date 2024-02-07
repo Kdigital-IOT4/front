@@ -34,10 +34,16 @@ export default {
     skip() {
       // Skip 버튼 클릭 시 수행할 로직
       console.log('Skip 버튼 클릭');
+
+       // (임시) 영수증 페이지로 이동
+      this.$router.push('/cocktail/bill');
     },
     confirm() {
       // 확인 버튼 클릭 시 수행할 로직
       console.log('확인 버튼 클릭', this.phoneNumber);
+
+       // (임시) 영수증 페이지로 이동
+       this.$router.push('/cocktail/bill');
     },
     appendToPhoneNumber(number) {
       // 숫자를 핸드폰 번호에 추가

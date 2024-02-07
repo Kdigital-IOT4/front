@@ -1,7 +1,7 @@
 <template>
   <div id="app-register">
     <div class="container-register-titleBox">
-      <h1>회원가입</h1>
+      <h1>머신 회원가입</h1>
     </div>
     <div class="container-register">
       <form @submit.prevent="submitForm" class="register-form">

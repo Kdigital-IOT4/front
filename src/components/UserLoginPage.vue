@@ -1,10 +1,9 @@
 <template>
-  User Login Page
-</template>
   <div id="app-machineLogin">
     <div class="container-machineLogin-titleBox">
       <h1>칵테일</h1>
     </div>
+
     <div class="container-machineLogin">
       <form @submit.prevent="submitForm">
         <div class="form-group">
@@ -18,10 +17,11 @@
         </div>
 
         <div class="form-group">
-          <input type="submit" value="Login">
+          <input type="submit" value="Login" @click="gotoCocktailMain">
         </div>
       </form>
 
+      <router-link to="/register/user" class="UserRegister-button">회원가입</router-link>
       <router-link to="/login" class="back-button">돌아가기</router-link>
     </div>
   </div>
@@ -38,6 +38,9 @@ export default {
     };
   },
   methods: {
+    gotoCocktailMain() {
+            this.$router.push('/cocktail/main'); //칵테일 페이지로 이동
+    },
     async submitForm() {
       try {
         const response = await axios.post('http://localhost:8080/api/v1/user/machine/login', {
@@ -117,6 +120,12 @@ export default {
   }
 
 .back-button{
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.UserRegister-button{
     text-decoration: none;
     color: black;
 }

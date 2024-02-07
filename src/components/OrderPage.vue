@@ -11,15 +11,17 @@
         <!-- Add more details if needed -->
       </div>
     </div>
+
+    <router-link to="/cocktail/payment">결제창이동</router-link>
   </div>
 </template>
 
 <script>
-import Header from "@/components/CocktailHeader.vue";
+//import Header from "@/components/CocktailHeader.vue";
 
 export default {
   components: {
-    Header
+    //Header
   },
   data() {
     return {

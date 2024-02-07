@@ -21,7 +21,7 @@
     },
     methods: {
         gotoStart() {
-            //this.$router.push('/Menu'); //칵테일 페이지로 이동
+            this.$router.push('/cocktail/main'); //칵테일 페이지로 이동
     },
     close(){
         this.$emit('close');
