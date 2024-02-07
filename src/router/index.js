@@ -4,7 +4,7 @@ import LoginPage from "@/components/LoginPage";
 import UserLoginPage from "@/components/UserLoginPage";
 import MachineLoginPage from "@/components/MachineLoginPage";
 import MachineMainPage from "@/components/MachineMainPage";
-import TestConnectPage from  "@/components/TestConnectPage";
+import TestConnectPage from "@/components/TestConnectPage";
 import BaseDetailPage from "@/components/BaseDetailPage";
 import BaseRegistrationPage from "@/components/BaseRegistrationPage";
 import BillPage from "@/components/BillPage";
@@ -24,6 +24,7 @@ import PhoneNumberPage from "@/components/PhoneNumberPage";
 import CocktailMachinePreviewPage from "@/components/CocktailMachinePreviewPage"
 import OrderPage from "@/components/OrderPage"
 import StuffRegistrationPage from "@/components/StuffRegistrationPage"
+
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },

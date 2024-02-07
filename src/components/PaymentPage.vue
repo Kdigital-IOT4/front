@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="content-box animate__animated animate__bounceIn">
       <!-- 가운데 정렬된 이미지 -->
@@ -60,3 +61,4 @@ export default {
   }
 };
 </script>
+
