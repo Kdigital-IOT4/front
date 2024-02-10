@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-          <input type="submit" value="Login" @click="gotoMachineMainPage">
+          <input type="submit" value="Login">
         </div>
       </form>
 
@@ -37,9 +37,8 @@ export default {
     };
   },
   methods: {
-    // 임시 페이지 이동 , 밑의 서버 응답 성공시 페이지 이동으로 변경해야함
-    gotoMachineMainPage(){
-      this.$router.push('/machine');
+    gotoMachineMainPage(machineId) {
+      this.$router.push({ name: 'MachineMainPage', params: { machineId } });
     },
     async submitForm() {
       try {
@@ -49,16 +48,18 @@ export default {
         });
 
         // 서버 응답 성공
-        if (response.status === 200) {
-          const machineData = response.data; // Assuming response.data contains the JSON data
-          console.log(machineData);
+        if (response.status === 200 && response.data.status === 'success') {
+          const machineId = response.data.machine_id;
+          this.gotoMachineMainPage(machineId);
         } else {
-          // 서버 응답 성공이 아닌 경우, 실패 모달 등의 처리를 추가할 수 있습니다.
-          console.error('Unexpected response status:', response.status);
+          // 서버 응답 성공이 아닌 경우, 실패 알림을 띄웁니다.
+          alert('Login failed. Please check your credentials.');
+          console.error('Unexpected response status or login failure:', response.status);
           // 실패 모달 등의 로직을 추가하세요.
         }
       } catch (error) {
         // 에러 발생 시 처리
+        alert('An error occurred during the request. Please try again.');
         console.error('An error occurred during the request:', error);
         // 실패 모달 등의 로직을 추가하세요.
       }
@@ -66,7 +67,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
   #app-machineLogin {

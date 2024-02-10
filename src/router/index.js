@@ -14,17 +14,16 @@ import CockTailOrderPage from "@/components/CockTailOrderPage";
 import CockTailPage from "@/components/CockTailPage";
 import CocktailPreviewPage from "@/components/CocktailPreviewPage";
 import ErrorPage from "@/components/ErrorPage";
-import PaymentPage from "@/components/PayMentPage";
+import PaymentPage from "@/components/PaymentPage";
 import PhoneNumberInputPage from "@/components/PhoneNumberInputPage";
 import UserSignUpPage from "@/components/UserSignUpPage";
 import UserRegisterPage from "@/components/UserRegisterPage";
 import MachineRegisterPage from "@/components/MachineRegisterPage";
 import CocktailMainPage from "@/components/CocktailMainPage";
 import PhoneNumberPage from "@/components/PhoneNumberPage";
-import CocktailMachinePreviewPage from "@/components/CocktailMachinePreviewPage"
-import OrderPage from "@/components/OrderPage"
-import StuffRegistrationPage from "@/components/StuffRegistrationPage"
-
+import CocktailMachinePreviewPage from "@/components/CocktailMachinePreviewPage";
+import OrderPage from "@/components/OrderPage";
+import StuffRegistrationPage from "@/components/StuffRegistrationPage";
 
 const routes = [
   { path: "/", name: "MainPage", component: MainPage },
@@ -40,7 +39,7 @@ const routes = [
     name: "StuffRegistrationPage",
     component: StuffRegistrationPage,
   },
-  
+
   {
     path: "/OrderPage",
     name: "OrderPage",
@@ -175,7 +174,6 @@ const routes = [
     name: "CocktailMachinePreviewPage",
     component: CocktailMachinePreviewPage,
   },
-
 ];
 
 const router = createRouter({
