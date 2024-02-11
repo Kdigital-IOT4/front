@@ -18,18 +18,15 @@
       </div>
     </div>
   </div>
-  <cocktail-detail-modal class = "Modal" v-show="show" v-on:close="OnModal"></cocktail-detail-modal >
 </template>
 <script>
 import Header from "@/components/CocktailHeader.vue";
 import { useMachineStore } from "@/stores/store";
 import { useCartStore } from "@/stores/cart";
-import CocktailDetailModal from "@/components/modal/CocktailDetailModal.vue";
 
 export default {
   components: {
     Header,
-    CocktailDetailModal, 
   },
   data() {
     return {
