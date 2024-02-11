@@ -1,8 +1,8 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import { createPinia } from 'pinia';
-import router from '@/router/index';
-import 'animate.css'; 
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createPinia } from "pinia";
+import router from "@/router/index";
+import "animate.css";
 // Vue 애플리케이션 생성
 const app = createApp(App);
 
@@ -14,4 +14,4 @@ app.use(pinia);
 app.use(router);
 
 // 애플리케이션을 마운트
-app.mount('#app');
+app.mount("#app");

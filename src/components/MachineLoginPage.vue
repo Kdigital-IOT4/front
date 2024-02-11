@@ -28,6 +28,7 @@
 
 <script>
 import axios from 'axios';
+import {useMachineStore} from "@/stores/store";
 
 export default {
   data() {
@@ -50,6 +51,9 @@ export default {
         // 서버 응답 성공
         if (response.status === 200 && response.data.status === 'success') {
           const machineId = response.data.machine_id;
+          //console.log('machineId before navigation:', machineId);
+        
+          useMachineStore().setMachineId(machineId);
           this.gotoMachineMainPage(machineId);
         } else {
           // 서버 응답 성공이 아닌 경우, 실패 알림을 띄웁니다.
