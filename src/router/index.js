@@ -24,8 +24,14 @@ import PhoneNumberPage from "@/components/PhoneNumberPage";
 import CocktailMachinePreviewPage from "@/components/CocktailMachinePreviewPage";
 import OrderPage from "@/components/OrderPage";
 import StuffRegistrationPage from "@/components/StuffRegistrationPage";
+import CocktailDetailModal from "@/components/modal/CocktailDetailModal";
 
 const routes = [
+  {
+    path: "/Cocktail/Modal",
+    name: "CocktailDetailModal",
+    component: CocktailDetailModal,
+  },
   { path: "/", name: "MainPage", component: MainPage },
   { path: "/login", name: "LoginPage", component: LoginPage },
   {

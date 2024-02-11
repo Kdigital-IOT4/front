@@ -42,7 +42,7 @@
 import axios from 'axios';
 import { useMachineStore } from "@/stores/store";
 import MachineStartModal from './MachineStartModal.vue';
-
+import { useCartStore } from "@/stores/cart";
 export default {
   components: { MachineStartModal },
 
@@ -76,6 +76,7 @@ export default {
 
         // 응답을 콘솔에 출력합니다.
         console.log('Server Response:', response.data);
+        useCartStore()
         useMachineStore().setMachineId(useMachineStore().machineId);
         // 응답 데이터를 컴포넌트 상태에 저장합니다.
         this.machineData = response.data;

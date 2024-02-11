@@ -7,20 +7,19 @@
       <div v-for="cocktail in cocktails" :key="cocktail.seq" class="cocktail-box" @click="fetchCocktailDetails(cocktail.seq)">
         <div class="cocktail_box_name">
           <h3>{{ cocktail.kr_Name }}</h3>
-          <p>{{ cocktail.en_Name }}</p>
+        <p>{{ cocktail.en_Name }}</p>
         </div>
         <div class="cocktail_box_img">
           <img :src="getImageUrl(cocktail.imgURL)" alt="Cocktail Image" />
         </div>
         <div class="cocktail_box_price">
-          <h3>{{ cocktail.price }}</h3>
+          <h3>{{cocktail.price}}</h3>
         </div> 
       </div>
     </div>
-    <cocktail-detail-modal class="Modal" v-show="show" v-on:close="OnModal"></cocktail-detail-modal>
   </div>
+  <cocktail-detail-modal class = "Modal" v-show="show" v-on:close="OnModal"></cocktail-detail-modal >
 </template>
-
 <script>
 import Header from "@/components/CocktailHeader.vue";
 import { useMachineStore } from "@/stores/store";
@@ -36,8 +35,19 @@ export default {
     return {
       cocktails: [],
       machineId: useMachineStore().machineId,
-      show: false, // Add this line to declare 'show' data property
+      show: false,
     };
+  },
+  computed: {
+    tempSeq() {
+      return useCartStore().tempSeq;
+    },
+  },
+  watch: {
+    tempSeq(newTempSeq) {
+      console.log('tempSeq updated:', newTempSeq);
+      // 여기서 모달 창 업데이트 로직을 호출
+    },
   },
   mounted() {
     this.fetchCocktails();
@@ -59,21 +69,22 @@ export default {
       }
     },
     getImageUrl(fileURL) {
-      // You can customize this method to handle image downloading logic
-      // For simplicity, we're directly returning the fileURL
       return fileURL;
     },
     async fetchCocktailDetails(seq) {
       try {
-        const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`);
-        const cocktailDetails = await response.json();
-        useCartStore().selectTempCocktail(cocktailDetails);
-        console.log(`Cocktail Details for seq ${seq}:`, cocktailDetails);
-        this.OnModal();
+        //const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`);
+        //const cocktailDetails = await response.json();
+        console.log("시바 -> 업데이트 전 seq : " ,useCartStore().tempSeq);
+        useCartStore().selectTempCocktail(seq);
+        console.log("시바 -> 업데이트 후 seq : " , useCartStore().tempSeq);
+        //this.OnModal();
+        this.$router.push('/Cocktail/Modal');
       } catch (error) {
         console.error('API 요청 중 오류 발생:', error);
       }
-    }
+    },
+
   }
 };
 </script>

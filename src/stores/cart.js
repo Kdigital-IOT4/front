@@ -3,13 +3,13 @@ import { defineStore } from "pinia";
 export const useCartStore = defineStore("cart", {
   state: () => {
     return {
-      tempcocktailDetails: [],
+      tempSeq: null,
       cart: [],
     };
   },
   actions: {
-    selectTempCocktail(cocktailDetails) {
-      this.tempcocktailDetails = cocktailDetails;
+    selectTempCocktail(seq) {
+      this.tempSeq = seq;
     },
 
     addToCart(item) {
