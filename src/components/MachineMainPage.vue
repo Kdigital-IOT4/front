@@ -35,13 +35,17 @@
 
 
   <router-link to="/" class="HomeBtn">홈</router-link>
+  <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
 </template>
 
 <script>
 import axios from 'axios';
 import { useMachineStore } from "@/stores/store";
+import MachineStartModal from './MachineStartModal.vue';
 
 export default {
+  components: { MachineStartModal },
+
   data() {
     return {
       show: false,
@@ -72,7 +76,7 @@ export default {
 
         // 응답을 콘솔에 출력합니다.
         console.log('Server Response:', response.data);
-
+        useMachineStore().setMachineId(useMachineStore().machineId);
         // 응답 데이터를 컴포넌트 상태에 저장합니다.
         this.machineData = response.data;
       } catch (error) {
