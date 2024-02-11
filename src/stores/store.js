@@ -3,7 +3,6 @@ import { defineStore } from "pinia";
 export const useMachineStore = defineStore("machine", {
   state: () => {
     return {
-      count: 0,
       machineId: "",
     };
   },
