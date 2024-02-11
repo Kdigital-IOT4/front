@@ -7,29 +7,46 @@
     <button class="HedBtn4" @click="OnModal"></button>
   </div>
  
-  <div class="container-MachineInfo">
-    <div class="MachinInfo">
-      <h1>{{ machineInfo.name }}</h1>
-      <p>{{ machineInfo.info }}</p>
+    <div class="MachinInfo_container">
+      <div class="machine_id">
+        <h1>{{ machineInfo.name }}</h1>
+      </div>
+      
+      <ul class="baseList_container">
+        <li v-for="base in machineData.baseList" :key="base.base_seq" class="baseList_box">
+            <div class="baseList_box_img">
+              <img :src="base.imgURL" alt="Base Image" width="200" height="200">
+            </div>
+            <div class="baseList_box_content">
+              <div class="baseList_box_content_name">
+                <span class="base_name">{{ base.kr_Name }} - {{ base.en_Name }}</span>
+              </div>
+              <div class="baseList_box_content_content">
+                <p>Price: {{ base.price }}</p>
+                <p>Alcohol: {{ base.alcohol }}</p>
+                <p> Amount: {{ base.amount }}</p>
+                <p>{{ base.content }}</p>
+                <p></p>
+              </div>
+          </div>
+        </li>
+      </ul>
     </div>
-    <machine-start-modal class="Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
-  </div>
+
 
   <router-link to="/" class="HomeBtn">홈</router-link>
 </template>
 
 <script>
-import MachineStartModal from './MachineStartModal.vue';
 import axios from 'axios';
 import { useMachineStore } from "@/stores/store";
 
 export default {
-  components: { MachineStartModal },
   data() {
     return {
       show: false,
       machineId: useMachineStore().machineId,
-      machineData: null, // machineData를 초기화
+      machineData: {},
     };
   },
   computed: {
@@ -72,23 +89,76 @@ export default {
 </script>
 
 <style>
+.baseList_container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
-.MachinInfo{
-  background: gray;
-  position:fixed;
-  left: 45em;
-  top:25em;
-  width: 50%;
-  height: 50%;
-  transform: translate(-50%, -50%);
+.machine_id {
+  flex: 2; /* 2:8 비율로 설정 */
+  color: wheat;
+}
+
+.baseList_container {
+  flex: 8; /* 2:8 비율로 설정 */
+  overflow-y: auto; /* 만약 내용이 넘칠 경우 스크롤 허용 */
+}
+
+li{
+  list-style-type: none;
+}
+.baseList_box {
+  margin-top:2rem;
+  width: 25%;
+  height: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white ;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.baseList_box_img{
+  margin-top:20px;
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+.baseList_box_content_name{
+  margin-bottom: 2rem;
+}
+.baseList_box_content{
+  margin-top:10px ;
+}
+.base_name{
+  font-size: 24px;
+} 
+.baseList_box_content_content p {
+  margin: 0.5rem;
+}
+
+.MachinInfo_container {
+  background-image: url('../assets/img/machine_back.jpg'); 
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  max-width: 1800px; /* 최대 너비 설정 (선택 사항) */
+  height: 700px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .HomeBtn{
   position:fixed;
   left:85em;
   top:45em;
-  background: gray;
+  border: 1px solid rgba(0, 0, 0, 0.8);
   transform: translate(-50%, -50%);
+  background-color:  white;
   width: 5em;
   height: 3em;
   padding-top: 2em;
