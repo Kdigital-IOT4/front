@@ -1,91 +1,163 @@
 <template>
-  <div>
-    <div class="cocktail-order-container">
-      <div v-for="cocktail in cocktails" :key="cocktail.seq" class="cocktail-box" @click="fetchCocktailDetails(cocktail.seq)">
-        <h3>{{ cocktail.kr_Name }}</h3>
-        <p>{{ cocktail.en_Name }}</p>
-        
-        <!-- Display the image using a method or computed property -->
-        <img :src="getImageUrl(cocktail.fileURL)" alt="Cocktail Image" />
+  <div class="modal-wrap">
+    <div class="modal-container-exchanege">
 
-        <!-- Add more details if needed -->
+      <!-- Displaying data -->
+      <div class="cart_cocktail_box" v-if="cocktailData && cocktailData.length > 0">
+        <div class="cart_cocktail_box_detail" v-for="cocktail in cocktailData" :key="cocktail.seq">
+          <div class="cocktail-image-container">
+            <img class="cocktail-image" :src="cocktail.img_URL" alt="Cocktail Image">
+          </div>
+            <h2>{{ cocktail.kr_name }}</h2>
+            <h2>{{ cocktail.price }} ₩</h2>
+          <div class="cocktail-amount-container">
+            <h2>{{ getQuantity(cocktail.seq) }}</h2>
+              <button @click="increseQuantity(cocktail.seq)">+</button>
+              <button @click="decreseQuantity(cocktail.seq)">-</button>
+          </div>
+          
+        </div>
       </div>
-    </div>
 
-    <router-link to="/cocktail/payment">결제창이동</router-link>
+    </div>
   </div>
 </template>
 
 <script>
-//import Header from "@/components/CocktailHeader.vue";
+import { useCartStore } from "@/stores/cart";
+import axios from 'axios';
 
 export default {
-  components: {
-    //Header
-  },
   data() {
     return {
-      cocktails: []
+      cart: useCartStore().cart,
+      cartData : null,
+      cocktailData: null,
     };
   },
-  mounted() {
-    this.fetchCocktails();
-  },
   methods: {
-    async fetchCocktails() {
+    increseQuantity(seq){
+      const currentQuantity = this.getQuantity(seq);
+      const newQuantity = currentQuantity + 1;
+      useCartStore().updateQuantity(seq , newQuantity);
+      this.getCartData()
+    },
+    decreseQuantity(seq){
+      const currentQuantity = this.getQuantity(seq);
+      if(currentQuantity == 1){
+        alert("한개 이하는 뺄수 없습니다");
+      }else{
+        const newQuantity = currentQuantity - 1;
+        useCartStore().updateQuantity(seq , newQuantity);
+        this.getCartData()
+      }
+
+    },
+
+    getQuantity(seq) {
+    const cartItem = this.cartData.find(item => item.seq === seq);
+    return cartItem ? cartItem.quantity : 0;
+  },
+    async getCartData() {
       try {
-        const response = await fetch('http://3.38.22.113:8080/api/v1/cocktail/listCocktail');
-        const data = await response.json();
-        
-        this.cocktails = data;
+        const response = await axios.post('http://localhost:8080/api/v1/cocktail/sort/cart', {
+          cartDataList: this.cart,
+        });
+        console.log('Server Response:', response.data.data);
+        this.cocktailData = response.data.data
+        this.isCustomStyle = true;
+        this.cartData = useCartStore().cart_data;
+        console.log("CocktailData " + JSON.stringify(useCartStore().cart_data));
+
       } catch (error) {
-        console.error('API 요청 중 오류 발생:', error);
+        console.error('Error:', error);
       }
     },
-    getImageUrl(fileURL) {
-      // You can customize this method to handle image downloading logic
-      // For simplicity, we're directly returning the fileURL
-      return fileURL;
+    close() {
+      this.$emit('close');
     },
-    async fetchCocktailDetails(seq) {
-      try {
-        const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`);
-        const cocktailDetails = await response.json();
-        
-        console.log(`Cocktail Details for seq ${seq}:`, cocktailDetails);
-      } catch (error) {
-        console.error('API 요청 중 오류 발생:', error);
-      }
-    }
-  }
+
+  },
+  mounted() {
+    this.getCartData();
+  },
 };
 </script>
-
-<style>
-.cocktail-container {
-  display: flex;
-  flex-wrap: wrap;
+ 
+ <style>
+ /* dimmed */
+.modal-wrap {
+ position: fixed;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0.4);
+}
+/* modal or popup */
+.modal-container {
+ position: relative;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 40em;
+ height: 20em;
+ background: #fff;
+ border-radius: 10px;
+ box-sizing: border-box;
+ padding-top: 5em;
+}
+.modal-container-exchanege {
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100em;
+height: 45em;
+background: #fff;
+border-radius: 10px;
+box-sizing: border-box;
+padding-top: 5em;
+overflow-y: auto; /* Enable vertical scrolling if needed */
 }
 
-.cocktail-box {
-  width: 23%; /* Set the width to around 23% to accommodate four items in a row */
-  margin: 10px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer; /* Add cursor pointer to indicate the box is clickable */
+.cart_cocktail_box {
+width: 100%;
+overflow: hidden; /* Hide overflow when items wrap to the next line */
+align-items: center;
+justify-content: center;
+}
+.cart_cocktail_box_detail {
+width: 100%;
+display: flex;
+justify-content: space-around;
+flex-direction: row;
+margin-right: 20px;
+margin-top: 10px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.cocktail-image-container {
+width: 100px; /* Set the desired width */
+height: 100px; /* Set the desired height */
+overflow: hidden;
+border-radius: 5px;
+margin-top: 10px;
+margin-bottom: 20px;
 }
 
-.cocktail-box:hover{
-    width : 25%;
-    /*
-    추가로 더 작성...
-    */
+.cocktail-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 5px;
+}
+.modal-btn{
+   margin-top: 5em;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.modal-btn > button{
+   width: 5em;
+   height: 3em;
 }
-</style>
+.btn2{
+   margin-left: 10em;
+}
+</style>  

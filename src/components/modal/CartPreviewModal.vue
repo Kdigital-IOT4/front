@@ -26,8 +26,8 @@
         </div>
   
         <div class="modal-btn">
-          <button class="btn1" @click="getCartData">Yes</button>
-          <button class="btn2" @click="close">No</button>
+          <button class="btn1" @click="getCartData">확인</button>
+          <button class="btn2" @click="close">돌아가기</button>
         </div>
       </div>
     </div>
@@ -47,6 +47,10 @@
       };
     },
     methods: {
+      gotoOrderPage() {
+        this.$router.push('/OrderPage');
+    },
+
       increseQuantity(seq){
         const currentQuantity = this.getQuantity(seq);
         const newQuantity = currentQuantity + 1;
