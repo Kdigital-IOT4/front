@@ -15,7 +15,6 @@ import CockTailPage from "@/components/CockTailPage";
 import CocktailPreviewPage from "@/components/CocktailPreviewPage";
 import ErrorPage from "@/components/ErrorPage";
 import PaymentPage from "@/components/PaymentPage";
-import PhoneNumberInputPage from "@/components/PhoneNumberInputPage";
 import UserSignUpPage from "@/components/UserSignUpPage";
 import UserRegisterPage from "@/components/UserRegisterPage";
 import MachineRegisterPage from "@/components/MachineRegisterPage";
@@ -124,12 +123,6 @@ const routes = [
   },
 
   {
-    path: "/PhoneNumberInputPage",
-    name: "PhoneNumberInputPage",
-    component: PhoneNumberInputPage,
-  },
-
-  {
     path: "/UserSignUpPage",
     name: "UserSignUpPage",
     component: UserSignUpPage,
@@ -158,11 +151,6 @@ const routes = [
     component: PaymentPage,
   },
 
-  {
-    path: "/cocktail/phoneNumber",
-    name: "PhoneNumberPage",
-    component: PhoneNumberPage,
-  },
   {
     path: "/cocktail/phoneNumber",
     name: "PhoneNumberPage",

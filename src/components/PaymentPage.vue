@@ -5,6 +5,10 @@
       <img src="@/assets/img/qr_ex.svg" alt="Your Image" class="centered-image" />
 
       <!-- 취소 버튼 -->
+      <div class="check-button">
+        <button @click="check()">확인</button>
+      </div>
+
       <div class="cancel-button">
         <button @click="cancel">취소</button>
       </div>
@@ -20,14 +24,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* 화면 전체 높이에 해당하는 값으로 조절 */
+  height: 100vh; 
 }
 
 .content-box {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .centered-image {
@@ -37,9 +41,19 @@
 }
 
 .cancel-button {
-  margin-top: 20px; /* 원하는 간격으로 조정할 수 있습니다. */
+  margin-top: 20px;
 }
 
+.check-button{
+  margin-top: 20px;
+}
+.check-button button{
+  padding: 10px 20px;
+  background-color: #1eff00;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 .cancel-button button {
   padding: 10px 20px;
   background-color: #ff0000;
@@ -56,7 +70,11 @@ export default {
       // 취소 버튼 클릭 시 수행할 로직 추가
       // 주문 페이지로 돌아감
       this.$router.push('/OrderPage');
-    }
+    },
+
+    check() {
+      this.$router.push('/cocktail/phoneNumber');
+    },
   }
 };
 </script>
