@@ -1,17 +1,24 @@
 <template>
     <div class="modal-wrap">
-      <div class="modal-container">
+      <div  :class="{ 'modal-container-exchanege': isCustomStyle }" class="modal-container">
   
         <!-- 모달창 content -->
-        <h1>칵테일 주문</h1>
+        <h1 v-show="!isCustomStyle">선택한 메뉴 확인</h1>
   
         <!-- Displaying data -->
-        <div v-if="cocktailData && cocktailData.length > 0">
-          <div v-for="cocktail in cocktailData" :key="cocktail.seq">
-            <h2>{{ cocktail.kr_name }}</h2>
-            <p>영문명: {{ cocktail.en_name }}</p>
-            <p>가격: {{ cocktail.price }}</p>
-            <img :src="cocktail.img_URL" alt="Cocktail Image">
+        <div class="cart_cocktail_box" v-if="cocktailData && cocktailData.length > 0">
+          <div class="cart_cocktail_box_detail" v-for="cocktail in cocktailData" :key="cocktail.seq">
+            <div class="cocktail-image-container">
+              <img class="cocktail-image" :src="cocktail.img_URL" alt="Cocktail Image">
+            </div>
+              <h2>{{ cocktail.kr_name }}</h2>
+              <h2>{{ cocktail.price }} ₩</h2>
+            <div class="cocktail-amount-container">
+                 <h2>1</h2>
+                <button>+</button>
+                <button>-</button>
+            </div>
+            
           </div>
         </div>
         <div v-else>
@@ -35,6 +42,7 @@
       return {
         cart: useCartStore().cart,
         cocktailData: null,
+        isCustomStyle: false,
       };
     },
     methods: {
@@ -45,6 +53,8 @@
           });
           console.log('Server Response:', response.data.data);
           this.cocktailData = response.data.data
+
+          this.isCustomStyle = true;
         } catch (error) {
           console.error('Error:', error);
         }
@@ -77,7 +87,50 @@
    box-sizing: border-box;
    padding-top: 5em;
  }
- 
+ .modal-container-exchanege {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100em;
+  height: 45em;
+  background: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding-top: 5em;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.cart_cocktail_box {
+  width: 100%;
+  overflow: hidden; /* Hide overflow when items wrap to the next line */
+  align-items: center;
+  justify-content: center;
+}
+.cart_cocktail_box_detail {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-right: 20px;
+  margin-top: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+ .cocktail-image-container {
+  width: 100px; /* Set the desired width */
+  height: 100px; /* Set the desired height */
+  overflow: hidden;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cocktail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
  .modal-btn{
      margin-top: 5em;
  }
