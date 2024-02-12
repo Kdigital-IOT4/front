@@ -14,9 +14,9 @@
               <h2>{{ cocktail.kr_name }}</h2>
               <h2>{{ cocktail.price }} ₩</h2>
             <div class="cocktail-amount-container">
-                 <h2>1</h2>
-                <button>+</button>
-                <button>-</button>
+              <h2>{{ getQuantity(cocktail.seq) }}</h2>
+                <button @click="increseQuantity(cocktail.seq)">+</button>
+                <button @click="decreseQuantity(cocktail.seq)">-</button>
             </div>
             
           </div>
@@ -32,7 +32,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   import { useCartStore } from "@/stores/cart";
   import axios from 'axios';
@@ -47,6 +47,28 @@
       };
     },
     methods: {
+      increseQuantity(seq){
+        const currentQuantity = this.getQuantity(seq);
+        const newQuantity = currentQuantity + 1;
+        useCartStore().updateQuantity(seq , newQuantity);
+        this.getCartData()
+      },
+      decreseQuantity(seq){
+        const currentQuantity = this.getQuantity(seq);
+        if(currentQuantity == 1){
+          alert("한개 이하는 뺄수 없습니다");
+        }else{
+          const newQuantity = currentQuantity - 1;
+          useCartStore().updateQuantity(seq , newQuantity);
+          this.getCartData()
+        }
+
+      },
+
+      getQuantity(seq) {
+      const cartItem = this.cartData.find(item => item.seq === seq);
+      return cartItem ? cartItem.quantity : 0;
+    },
       async getCartData() {
         try {
           const response = await axios.post('http://localhost:8080/api/v1/cocktail/sort/cart', {
@@ -55,6 +77,7 @@
           console.log('Server Response:', response.data.data);
           this.cocktailData = response.data.data
           this.isCustomStyle = true;
+          this.cartData = useCartStore().cart_data;
           console.log("CocktailData " + JSON.stringify(useCartStore().cart_data));
 
         } catch (error) {
