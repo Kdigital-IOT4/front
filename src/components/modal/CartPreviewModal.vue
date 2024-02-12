@@ -41,6 +41,7 @@
     data() {
       return {
         cart: useCartStore().cart,
+        cartData : null,
         cocktailData: null,
         isCustomStyle: false,
       };
@@ -53,8 +54,9 @@
           });
           console.log('Server Response:', response.data.data);
           this.cocktailData = response.data.data
-
           this.isCustomStyle = true;
+          console.log("CocktailData " + JSON.stringify(useCartStore().cart_data));
+
         } catch (error) {
           console.error('Error:', error);
         }
