@@ -1,22 +1,28 @@
 <template>
-  <div class="modal-wrap">
-    <div class="modal-container-exchanege">
-
+  <div class="order_root_container">
+    <button class="back_button"  @click="gotoCocktailMain()">돌아가기</button>
+    <button class="pay_button"  @click=" gotoPayment()">결제하기</button>
+    <div class="order_container">
       <!-- Displaying data -->
       <div class="cart_cocktail_box" v-if="cocktailData && cocktailData.length > 0">
         <div class="cart_cocktail_box_detail" v-for="cocktail in cocktailData" :key="cocktail.seq">
-          <div class="cocktail-image-container">
+          <div class="cocktail_image_box">
             <img class="cocktail-image" :src="cocktail.img_URL" alt="Cocktail Image">
           </div>
-            <h2>{{ cocktail.kr_name }}</h2>
-            <h2>{{ cocktail.price }} ₩</h2>
-          <div class="cocktail-amount-container">
-            <h2>{{ getQuantity(cocktail.seq) }}</h2>
-              <button @click="increseQuantity(cocktail.seq)">+</button>
-              <button @click="decreseQuantity(cocktail.seq)">-</button>
+          <div class="cocktail_data_box">
+              <h2>{{ cocktail.kr_name }}</h2>
+              
+            <div class="cocktail-amount-container">
+              <h2>{{ getQuantity(cocktail.seq) }}</h2>
+            </div>
+
+              <h2>{{ cocktail.price * getQuantity(cocktail.seq)}} ₩</h2>
           </div>
-          
         </div>
+        <div class="total_price_box">
+          <h2>Total Price: {{ totalPrice }} ₩</h2>
+        </div>
+        
       </div>
 
     </div>
@@ -29,31 +35,28 @@ import axios from 'axios';
 
 export default {
   data() {
-    return {
+    return { 
       cart: useCartStore().cart,
       cartData : null,
       cocktailData: null,
     };
   },
+
+  computed: {
+    totalPrice() {
+      return this.cocktailData.reduce((total, cocktail) => {
+        return total + cocktail.price * this.getQuantity(cocktail.seq);
+      }, 0);
+    },
+  },
+
   methods: {
-    increseQuantity(seq){
-      const currentQuantity = this.getQuantity(seq);
-      const newQuantity = currentQuantity + 1;
-      useCartStore().updateQuantity(seq , newQuantity);
-      this.getCartData()
+    gotoCocktailMain(){
+      this.$router.push('/cocktail/main');
     },
-    decreseQuantity(seq){
-      const currentQuantity = this.getQuantity(seq);
-      if(currentQuantity == 1){
-        alert("한개 이하는 뺄수 없습니다");
-      }else{
-        const newQuantity = currentQuantity - 1;
-        useCartStore().updateQuantity(seq , newQuantity);
-        this.getCartData()
-      }
-
+    gotoPayment(){
+      this.$router.push('/cocktail/payment');
     },
-
     getQuantity(seq) {
     const cartItem = this.cartData.find(item => item.seq === seq);
     return cartItem ? cartItem.quantity : 0;
@@ -85,27 +88,35 @@ export default {
 </script>
  
  <style>
- /* dimmed */
-.modal-wrap {
+
+.total_price_box{
+  margin-top:4rem;
+  margin-bottom: 6rem;
+}
+
+.order_root_container {
  position: fixed;
  width: 100%;
  height: 100%;
  background: rgba(0, 0, 0, 0.4);
 }
-/* modal or popup */
-.modal-container {
- position: relative;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- width: 40em;
- height: 20em;
- background: #fff;
- border-radius: 10px;
- box-sizing: border-box;
- padding-top: 5em;
+.back_button{
+  position: fixed;
+  left: 0;
+  margin-top: 2rem;
+  margin-left: 3rem;
+  width: 100px;
+  height: 60px;
 }
-.modal-container-exchanege {
+.pay_button{
+  position: fixed;
+  right: 0;
+  margin-top: 2rem;
+  margin-right: 3rem;
+  width: 100px;
+  height: 60px;
+}
+.order_container {
 position: relative;
 top: 50%;
 left: 50%;
@@ -115,8 +126,8 @@ height: 45em;
 background: #fff;
 border-radius: 10px;
 box-sizing: border-box;
-padding-top: 5em;
-overflow-y: auto; /* Enable vertical scrolling if needed */
+padding-top: 1em;
+overflow-y: auto; 
 }
 
 .cart_cocktail_box {
@@ -125,24 +136,40 @@ overflow: hidden; /* Hide overflow when items wrap to the next line */
 align-items: center;
 justify-content: center;
 }
+
 .cart_cocktail_box_detail {
-width: 100%;
-display: flex;
-justify-content: space-around;
-flex-direction: row;
-margin-right: 20px;
-margin-top: 10px;
-border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-}
-.cocktail-image-container {
-width: 100px; /* Set the desired width */
-height: 100px; /* Set the desired height */
-overflow: hidden;
-border-radius: 5px;
-margin-top: 10px;
-margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-right: 20px;
+  margin-top: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
+.cocktail_image_box {
+  width: 100px; 
+  height: 100px;
+  overflow: hidden;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cocktail_data_box {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cocktail_data_box h2 {
+  width: 30%; 
+  text-align: center; 
+}
 .cocktail-image {
 width: 100%;
 height: 100%;
