@@ -14,7 +14,6 @@ import CockTailOrderPage from "@/components/CockTailOrderPage";
 import CockTailPage from "@/components/CockTailPage";
 import CocktailPreviewPage from "@/components/CocktailPreviewPage";
 import ErrorPage from "@/components/ErrorPage";
-import PaymentPage from "@/components/PaymentPage";
 import UserSignUpPage from "@/components/UserSignUpPage";
 import UserRegisterPage from "@/components/UserRegisterPage";
 import MachineRegisterPage from "@/components/MachineRegisterPage";
@@ -143,12 +142,6 @@ const routes = [
     path: "/cocktail/main",
     name: "CocktailMainPage",
     component: CocktailMainPage,
-  },
-
-  {
-    path: "/cocktail/payment",
-    name: "PaymentPage",
-    component: PaymentPage,
   },
 
   {
