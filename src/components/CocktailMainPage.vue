@@ -17,16 +17,24 @@
         </div> 
       </div>
     </div>
+
   </div>
+  <div class="cocktail_cart" @click="OnModal">카트</div>
+
+  
+  <cart class = "Modal" v-show="show" v-on:close="OnModal"></cart>
 </template>
 <script>
 import Header from "@/components/CocktailHeader.vue";
+import cart from "@/components/modal/CartPreviewModal.vue";
+
 import { useMachineStore } from "@/stores/store";
 import { useCartStore } from "@/stores/cart";
 
 export default {
   components: {
     Header,
+    cart,
   },
   data() {
     return {
@@ -72,9 +80,7 @@ export default {
       try {
         //const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`);
         //const cocktailDetails = await response.json();
-        console.log("시바 -> 업데이트 전 seq : " ,useCartStore().tempSeq);
         useCartStore().selectTempCocktail(seq);
-        console.log("시바 -> 업데이트 후 seq : " , useCartStore().tempSeq);
         //this.OnModal();
         this.$router.push('/Cocktail/Modal');
       } catch (error) {
@@ -135,7 +141,10 @@ export default {
     추가로 더 작성...
     */
 }
-
+.cocktail_cart{
+  border:  1px solid black;
+  background-color: wheat;
+}
 img {
   max-width: 100%;
   height: auto;
