@@ -25,8 +25,14 @@ import OrderPage from "@/components/OrderPage";
 import StuffRegistrationPage from "@/components/StuffRegistrationPage";
 import CocktailDetailModal from "@/components/modal/CocktailDetailModal";
 import OrderConnectPage from "@/components/OrderConnectPage";
-
+import CocktailMakePage from "@/components/CocktailMakePage";
 const routes = [
+  {
+    path: "/cocktail/make",
+    name: "CocktailMakePage",
+    component: CocktailMakePage,
+  },
+
   {
     path: "/cocktail/order/connect",
     name: "OrderConnectPage",

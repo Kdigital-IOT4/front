@@ -3,7 +3,6 @@
     <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
     <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
     <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
-    <div></div>
     <button class="HedBtn4" @click="OnModal"></button>
   </div>
  
@@ -33,7 +32,7 @@
       </ul>
     </div>
 
-
+  <router-link to="/cocktail/make" class="makeCocktailBtn">칵테일 만들기</router-link>
   <router-link to="/" class="HomeBtn">홈</router-link>
   <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
 </template>
@@ -73,7 +72,7 @@ export default {
     async getMachineData() {
       try {
         // 수정된 부분: 데이터를 서버에 보냅니다.
-        const response = await axios.post('http://localhost:8080/api/v1/machine/data/read', {
+        const response = await axios.post('http://3.38.22.113:8080/api/v1/machine/data/read', {
           machineId: this.machineId,
         });
 
@@ -164,6 +163,18 @@ li{
 .HomeBtn{
   position:fixed;
   left:85em;
+  top:45em;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  transform: translate(-50%, -50%);
+  background-color:  white;
+  width: 5em;
+  height: 3em;
+  padding-top: 2em;
+}
+
+.makeCocktailBtn{
+  position:fixed;
+  left:95em;
   top:45em;
   border: 1px solid rgba(0, 0, 0, 0.8);
   transform: translate(-50%, -50%);

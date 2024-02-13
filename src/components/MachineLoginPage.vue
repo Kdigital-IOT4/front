@@ -43,7 +43,7 @@ export default {
     },
     async submitForm() {
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/user/machine/login', {
+        const response = await axios.post('http://3.38.22.113:8080/api/v1/user/machine/login', {
           machineId: this.machineId,
           machinePassWord: this.machinePassword,
         });
