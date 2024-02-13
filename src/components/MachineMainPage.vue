@@ -163,13 +163,18 @@ li{
 
 .HomeBtn{
   position:fixed;
-  left:85em;
-  top:45em;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  transform: translate(-50%, -50%);
-  background-color:  white;
+  left:90%;
+  top:85%;
+  display: inline-block;
   width: 5em;
-  height: 3em;
-  padding-top: 2em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2048 2048'%3E%3Cpath fill='%23000' d='m1024 165l941 942l-90 90l-83-82v805h-640v-640H896v640H256v-805l-83 82l-90-90zm640 1627V987l-640-640l-640 640v805h384v-640h512v640z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 </style>
