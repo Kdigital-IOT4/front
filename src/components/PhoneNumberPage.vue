@@ -41,7 +41,7 @@ export default {
       //console.log('Skip 버튼 클릭');
       usePhoneStore().setPhoneNumber(null);
        // (임시) 영수증 페이지로 이동
-      this.$router.push('/cocktail/bill');
+      this.$router.push('/cocktail/order/connect');
     },
     confirm() {
       // 확인 버튼 클릭 시 수행할 로직
@@ -51,7 +51,7 @@ export default {
         // Phone number is valid
         usePhoneStore().setPhoneNumber(this.phoneNumber);
         // (임시) 영수증 페이지로 이동
-        this.$router.push('/cocktail/bill');
+        this.$router.push('/cocktail/order/connect');
       } else {
         // Phone number is not in the correct format
         alert('유효한 핸드폰 번호를 입력해주세요.');
