@@ -1,10 +1,10 @@
 <template>
     <div class="container-hed">
         <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
-        <router-link to="/BaseRegistrationPage" class="HedBtn2">베이스 등록</router-link>
-        <router-link to="/StuffRegistrationPage" class="HedBtn3">재료 등록</router-link>
+        <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
+        <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
         <div></div>
-        <button class="HedBtn4" @click="OnModal">개시</button>
+        <button class="HedBtn4" @click="OnModal"></button>
     </div>
 
     <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>

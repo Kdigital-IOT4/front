@@ -73,7 +73,7 @@ export default {
     async getMachineData() {
       try {
         // 수정된 부분: 데이터를 서버에 보냅니다.
-        const response = await axios.post('http://localhost:8080/api/v1/machine/data/read', {
+        const response = await axios.post('http://3.38.22.113:8080/api/v1/machine/data/read', {
           machineId: this.machineId,
         });
 
@@ -119,26 +119,34 @@ li{
 }
 .baseList_box {
   margin-top:2rem;
-  width: 25%;
+  width: 18%;
   height: 400px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
   box-sizing: border-box;
   margin-right: 10px;
   display: flex;
   flex-direction: column;
-  background-color: white ;
+  background-color: rgb(255, 255, 255) ;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 .baseList_box_img{
   margin-top:20px;
-  width: 100%;
+  width: 70%;
   height: 70%;
   object-fit: cover;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬 */
+  margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬 */
+  display: block; /* 블록 레벨 요소로 설정하여 중앙 정렬 적용 */
 }
 .baseList_box_content_name{
   margin-bottom: 2rem;
 }
 .baseList_box_content{
+  background-color: #ced4da;
+  border-top: 1.5px solid black; /* 윗부분 선 굵기와 색상 조절 */
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
   margin-top:10px ;
 }
 .base_name{
