@@ -8,11 +8,13 @@
 
       <!-- 숫자 입력 키보드 -->
       <div class="numeric-keyboard">
-        <button @click="appendToPhoneNumber(0)">0</button>
-        <button v-for="number in 9" :key="number" @click="appendToPhoneNumber(number)">
-          {{ number }}
+        <button @click="appendToPhoneNumber(1)">1</button>
+        <button v-for="number in 8" :key="number" @click="appendToPhoneNumber(number+1)">
+          {{ number+1 }}
         </button>
 
+        <button @click="appendToPhoneNumber010">010</button>
+        <button @click="appendToPhoneNumber(0)">0</button>
         <button @click="backspace">-</button>
       </div>
     </div>
@@ -62,6 +64,12 @@ export default {
       // 숫자를 핸드폰 번호에 추가
       this.phoneNumber += number;
     },
+    appendToPhoneNumber010() {
+      // 숫자를 핸드폰 번호에 추가
+      this.phoneNumber += 0;
+      this.phoneNumber += 1;
+      this.phoneNumber += 0;
+    },
     backspace() {
       // Backspace 기능: 마지막 글자를 제거
       this.phoneNumber = this.phoneNumber.slice(0, -1);
@@ -73,11 +81,8 @@ export default {
 <style scoped>
 .phone-input-container {
   text-align: center;
-  border: 1px solid red;
   position: fixed;
-  width: 90%;
-  height: 90%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(255, 255, 255);
   top: 0;
   left: 0;
   right: 0;
@@ -92,11 +97,11 @@ export default {
 .phoneNumber_header_box,
 .phoneNmuber_input_box,
 .phoneNumber_buttom_box {
-  padding: 10px; /* Add padding to the boxes if needed */
+  padding: 50px; /* Add padding to the boxes if needed */
 }
 
 .phoneNmuber_input_box input {
-  width: 70%;
+  width: 30%;
   height: 60px;
   margin-bottom: 4rem;
   padding: 10px;
@@ -108,12 +113,22 @@ export default {
   box-sizing: border-box;
   pointer-events: none;
   text-align: center;
+  position: fixed;
+  top: 30%;
+  left: 48%;
+  transform: translate(-50%, -50%);
 }
 
 .numeric-keyboard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content : center;
+  width: 30%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin-bottom: 20px;
 }
 
@@ -121,11 +136,13 @@ export default {
   width: 70px;
   height: 70px;
   font-size: 18px;
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
+  color: rgb(255, 255, 255); /* 글씨 색 */
   cursor: pointer;
-  margin: 5px; /* 버튼 간격을 추가했습니다. */
+  margin: 5px 10px; /* 버튼 간격을 추가했습니다. */
+  border-color: #111;
+  background: linear-gradient(180deg,#555 0%,#222 49%, #000 51%,#222 100%);
+  border-radius: 5px;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,.5),0px 1px 3px rgba(0,0,0,0.3);
 }
 
 .button-group button {
@@ -139,5 +156,31 @@ export default {
 
 .button-group button:hover {
   background-color: #45a049;
+}
+
+.phoneNumber_buttom_box button{
+  margin-left: 15px;
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  background: rgb(0, 0, 0);
+  border: none;
+}
+
+.phoneNumber_buttom_box button:hover {
+  background: linear-gradient(180deg,#555 0%,#222 49%, #000 51%,#222 100%);
 }
 </style>
