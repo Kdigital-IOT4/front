@@ -1,38 +1,25 @@
 <template>
-  <div class="container-hed">
-    <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
-    <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
-    <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
-    <div></div>
-    <button class="HedBtn4" @click="OnModal"></button>
-  </div>
- 
   <div class="container-MachineInfo">
     <div class="MachinInfo">
         <h1>MachinName</h1>
         <p>MachinInfo</p>
     </div>
-    <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
   </div>
 
   <router-link to="/" class="HomeBtn">홈</router-link>
+  
+  <MachineHeader></MachineHeader>
 </template>
 
 <script>
-import MachineStartModal from './MachineStartModal.vue';
+import MachineHeader from "@/components/CocktailMachineHeader.vue"
+
 export default {
-  components: { MachineStartModal },
+  components: { MachineHeader },
   data(){
     return{
-      show : false
     };
   },
-
-  methods:{
-    OnModal(){
-        this.show = !this.show;
-    },
-  }
 };
 </script>
 

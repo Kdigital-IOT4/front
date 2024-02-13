@@ -1,11 +1,4 @@
 <template>
-    <div class="container-hed">
-        <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
-        <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
-        <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
-        <div></div>
-        <button class="HedBtn4" @click="OnModal"></button>
-    </div>
     
     <div class="container-PreView">
         <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
@@ -20,17 +13,20 @@
             </div>
         </div>
     </div>
+
+    <MachineHeader></MachineHeader>
 </template>
 
 <script>
-import MachineStartModal from './MachineStartModal.vue';
+import MachineHeader from "@/components/CocktailMachineHeader.vue"
 
 export default {
-  components: { MachineStartModal },
+  components :{
+    MachineHeader
+  },
   data() {
     return {
       expandableElements: [],
-      show : false,
       cocktails : [],
       CocktailsDetails : [],
       ElementsIndex : 0,
@@ -40,9 +36,6 @@ export default {
         this.fetchCocktails();
   },
   methods: {
-    OnModal(){
-        this.show = !this.show;
-    },
     async fetchCocktails() {
       try {
         const response = await fetch('http://3.38.22.113:8080/api/v1/cocktail/listCocktail');
@@ -97,11 +90,13 @@ export default {
     width: 10em;
     height: 11em;
     background-color: gray;
+    border-radius: 10px;
 }
 
 .PreViewImg{
     padding-top: 1em;
-    width: 5em;
+    width: 6em;
+    height: 6em;
 }
 
 .expand-content {
