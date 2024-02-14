@@ -134,10 +134,10 @@ li{
   width: 70%;
   height: 70%;
   object-fit: cover;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-  margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬 */
-  margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬 */
-  display: block; /* 블록 레벨 요소로 설정하여 중앙 정렬 적용 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .baseList_box_content_name{
   margin-bottom: 2rem;
@@ -170,6 +170,7 @@ li{
 }
 
 .HomeBtn{
+  color:white;
   position:fixed;
   left:90%;
   top:85%;

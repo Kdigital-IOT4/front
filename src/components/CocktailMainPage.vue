@@ -9,7 +9,7 @@
           <img :src="getImageUrl(cocktail.imgURL)" alt="Cocktail Image" />
         </div>
         <div class="cocktail_box_name">
-          <h3>{{ cocktail.kr_Name }}</h3>
+          <h3>{{ cocktail.kr_Name }} - {{ cocktail.en_Name }}</h3>
         <!--<p>{{ cocktail.en_Name }}</p>-->
         </div>
         <div class="cocktail_box_price">
