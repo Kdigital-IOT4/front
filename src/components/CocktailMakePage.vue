@@ -80,7 +80,7 @@
     methods: {
       async getWaitingOrderList() {
         try {
-          const response = await axios.get(`http://localhost:8080/api/v1/order/read/${this.machineId}`);
+          const response = await axios.get(`http://3.38.22.113:8080/api/v1/order/read/${this.machineId}`);
           this.orderList = response.data.data.orderReadList;
           console.log("Server Response:", this.orderList);
         } catch (error) {

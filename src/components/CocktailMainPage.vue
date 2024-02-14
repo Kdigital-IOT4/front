@@ -65,7 +65,7 @@ export default {
 
     async fetchCocktails() {
       try {
-        const response = await fetch(`http://localhost:8080/api/v1/cocktail/sort/${this.machineId}`);
+        const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/sort/${this.machineId}`);
         const data = await response.json();
         console.log(data.data);
         this.cocktails = data.data;

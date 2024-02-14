@@ -42,7 +42,7 @@ export default {
     },
     async getCocktailData(seq) {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/cocktail/${seq}`, {});
+        const response = await axios.get(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`, {});
 
         // 서버 응답 성공
         if (response.status === 200) {

@@ -32,7 +32,7 @@
 
         async orderProcess__request_Gcode() {
           try {
-            const response = await axios.get(`http://localhost:8080/api/v1/order/makeCocktail/${this.orderCode}/fast`);
+            const response = await axios.get(`http://3.38.22.113:8080/api/v1/order/makeCocktail/${this.orderCode}/fast`);
             console.log("Server Response:", response.data);
 
             if(response != null){
