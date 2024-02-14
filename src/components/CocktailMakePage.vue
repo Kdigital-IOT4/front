@@ -26,7 +26,7 @@
                 </button>
               </td>
               <td class="make-cocktail" >
-                <button @click="makeCocktail(order)" class="make-cocktail-btn">
+                <button @click="makeCocktail(order.orderCode)" class="make-cocktail-btn">
 
                 </button>
               </td>
@@ -67,7 +67,7 @@
   <script>
   import axios from "axios";
   import { useMachineStore } from "@/stores/store";
-  
+  import {useOrderDataStore} from "@/stores/orderDataStore";
   export default {
     data() {
       return {
@@ -95,9 +95,11 @@
         this.showAdditionalInfoModal = false;
         this.currentOrder = null;
       },
-      makeCocktail(order) {
+      makeCocktail(orderCode) {
         // Implement your makeCocktail logic
-        console.log("Making cocktail for order:", order);
+        console.log("Making cocktail for order:", orderCode);
+        useOrderDataStore().setOrderCode(orderCode);
+        this.$router.push('/cocktail/make/process');
       },
     },
     mounted() {
