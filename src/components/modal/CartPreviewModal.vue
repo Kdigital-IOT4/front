@@ -11,8 +11,14 @@
             <div class="cocktail-image-container">
               <img class="cocktail-image" :src="cocktail.img_URL" alt="Cocktail Image">
             </div>
+
+            <div class="cart_cocktail_name">
               <h2>{{ cocktail.kr_name }}</h2>
-              <h2>{{ cocktail.price }} ₩</h2>
+            </div>
+            <div class="cart_cocktail_price">
+              <h2>{{ cocktail.price }}원</h2>
+            </div>
+
             <div class="cocktail-amount-container">
               <h2>{{ getQuantity(cocktail.seq) }}</h2>
                 <button @click="increseQuantity(cocktail.seq)">+</button>
@@ -25,9 +31,9 @@
           <p>No cocktail data available.</p>
         </div>
   
-        <div class="modal-btn">
-          <button class="btn1" @click="getCartData">확인</button>
-          <button class="btn2" @click="close">돌아가기</button>
+        <div class="cart_modal-btn">
+          <button class="cart_btn1" @click="getCartData">확인</button>
+          <button class="cart_btn2" @click="close">취소</button>
         </div>
       </div>
     </div>
@@ -75,7 +81,7 @@
     },
       async getCartData() {
         try {
-          const response = await axios.post('http://localhost:8080/api/v1/cocktail/sort/cart', {
+          const response = await axios.post('http://3.38.22.113:8080/api/v1/cocktail/sort/cart', {
             cartDataList: this.cart,
           });
           console.log('Server Response:', response.data.data);
@@ -136,6 +142,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .cart_cocktail_box_detail {
   width: 100%;
   display: flex;
@@ -148,9 +155,9 @@
  .cocktail-image-container {
   width: 100px; /* Set the desired width */
   height: 100px; /* Set the desired height */
-  overflow: hidden;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-left: 80px;
+  margin-top: 0px;
   margin-bottom: 20px;
 }
 
@@ -160,15 +167,19 @@
   object-fit: cover;
   border-radius: 5px;
 }
- .modal-btn{
+ .cart_modal-btn{
      margin-top: 5em;
  }
  
- .modal-btn > button{
+ .cart_modal-btn > button{
      width: 5em;
      height: 3em;
  }
- .btn2{
+ .cart_btn1{
+  background-color: #ff7f7f;
+ }
+ .cart_btn2{
      margin-left: 10em;
+     background-color: #c0c0c0;
  }
  </style>  

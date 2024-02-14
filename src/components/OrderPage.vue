@@ -63,7 +63,7 @@ export default {
   },
     async getCartData() {
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/cocktail/sort/cart', {
+        const response = await axios.post('http://3.38.22.113:8080/api/v1/cocktail/sort/cart', {
           cartDataList: this.cart,
         });
         console.log('Server Response:', response.data.data);

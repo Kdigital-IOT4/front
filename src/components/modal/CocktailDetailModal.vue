@@ -6,16 +6,19 @@
       </div>
       <div class="cocktail_detail_box_content">
         <h1>{{ cocktailDetail.kr_Name }}</h1>
-        <p>Price: {{ cocktailDetail.price }}</p>
+        <p>Price: {{ cocktailDetail.price }}원</p>
         <p>Amount: {{ cocktailDetail.amount }}</p>
         <p>Alcohol: {{ cocktailDetail.alcohol }}</p>
         <p>Content: {{ cocktailDetail.content }}</p>
       </div>
+
+      <div class="Detail_modal-btn">
+        <button class="Detail_modal-btn1" @click="addCart">추가하기</button>
+        <button class="Detail_modal-btn2" @click="close">돌아가기</button>
+     </div>
+
     </div>
-    <div class="modal-btn">
-        <button class="btn1" @click="addCart">추가하기</button>
-        <button class="btn2" @click="close">돌아가기</button>
-      </div>
+    
   </div>
 </template>
 
@@ -42,7 +45,7 @@ export default {
     },
     async getCocktailData(seq) {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/cocktail/${seq}`, {});
+        const response = await axios.get(`http://3.38.22.113:8080/api/v1/cocktail/${seq}`, {});
 
         // 서버 응답 성공
         if (response.status === 200) {
@@ -78,11 +81,12 @@ export default {
    transform: translate(-50%, -50%);
    width: 80em;
    height: 50em;
-   background: #fff;
+   background: #ffffff;
    border-radius: 10px;
    box-sizing: border-box;
    padding-top: 5em;
    display: flex;
+   
  }
  .cocktail_detail_box_img{
   height: 70%;
@@ -93,21 +97,32 @@ export default {
  }
  .cocktail_detail_box_content{
   height: 70%;
-  width: 50%;
+  width: 20%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-left: 2rem;
+  margin-left: 15rem;
+  border : 1px solid #ccc;
+  background-color: #dee2e6;
  }
- .modal-btn{
-     margin-top: 6rem;
+ .Detail_modal-btn{
+  position: absolute;
+  bottom: 5em; /* 원하는 위치로 조정 */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6rem;
  }
  
- .modal-btn > button{
+ .Detail_modal-btn > button{
      width: 10rem;
      height: 3rem;
+     border-radius: 10px;
  }
- .btn2{
+ .Detail_modal-btn1{
+  background-color: #ff7f7f;
+ }
+ .Detail_modal-btn2{
      margin-left: 10em;
+     background-color: #c0c0c0;
  }
  </style>  

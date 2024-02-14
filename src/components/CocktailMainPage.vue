@@ -5,15 +5,15 @@
     <!-- Display individual boxes for each cocktail -->
     <div class="cocktail-container">
       <div v-for="cocktail in cocktails" :key="cocktail.seq" class="cocktail-box" @click="fetchCocktailDetails(cocktail.seq)">
-        <div class="cocktail_box_name">
-          <h3>{{ cocktail.kr_Name }}</h3>
-        <p>{{ cocktail.en_Name }}</p>
-        </div>
         <div class="cocktail_box_img">
           <img :src="getImageUrl(cocktail.imgURL)" alt="Cocktail Image" />
         </div>
+        <div class="cocktail_box_name">
+          <h3>{{ cocktail.kr_Name }} - {{ cocktail.en_Name }}</h3>
+        <!--<p>{{ cocktail.en_Name }}</p>-->
+        </div>
         <div class="cocktail_box_price">
-          <h3>{{cocktail.price}}</h3>
+          <h3>{{cocktail.price}}원</h3>
         </div> 
       </div>
     </div>
@@ -65,7 +65,7 @@ export default {
 
     async fetchCocktails() {
       try {
-        const response = await fetch(`http://localhost:8080/api/v1/cocktail/sort/${this.machineId}`);
+        const response = await fetch(`http://3.38.22.113:8080/api/v1/cocktail/sort/${this.machineId}`);
         const data = await response.json();
         console.log(data.data);
         this.cocktails = data.data;
@@ -106,33 +106,38 @@ export default {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  border : 1px solid #ccc;
+  margin-top : 3px;
+  margin-left: 5px;
 }
 
+.cocktail-box h3,
+.cocktail-box p{
+  color:white;
+}
 /* Name box styling */
 .cocktail_box_name {
+  border-top : 1px solid #ccc;
   padding: 10px;
-  border: 1px solid #ccc;
   flex: 2; /* Adjust the flex ratio for the name box */
 }
 
 /* Image box styling */
 .cocktail_box_img {
   padding: 10px;
-  border: 1px solid #ccc;
   flex: 7; /* Adjust the flex ratio for the image box */
 }
 
 /* Image styling */
 .cocktail_box_img img {
   width: 100%; /* This makes the image take the full width of its container */
-  height: 500px; /* Maintain aspect ratio */
+  height: 400px; /* Maintain aspect ratio */
   display: block;
 }
 
 /* Price box styling */
 .cocktail_box_price {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 5px;
   flex: 1; /* Adjust the flex ratio for the price box */
 }
 .cocktail-box:hover{
@@ -142,8 +147,19 @@ export default {
     */
 }
 .cocktail_cart{
-  border:  1px solid black;
-  background-color: wheat;
+  margin-top : 10px;
+  color:white;
+  display: inline-block;
+  width: 5em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M6 13h9c.55 0 1 .45 1 1s-.45 1-1 1H5c-.55 0-1-.45-1-1V4H2c-.55 0-1-.45-1-1s.45-1 1-1h3c.55 0 1 .45 1 1v2h13l-4 7H6zm-.5 3c.83 0 1.5.67 1.5 1.5S6.33 19 5.5 19S4 18.33 4 17.5S4.67 16 5.5 16m9 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 img {
   max-width: 100%;

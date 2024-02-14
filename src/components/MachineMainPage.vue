@@ -118,26 +118,34 @@ li{
 }
 .baseList_box {
   margin-top:2rem;
-  width: 25%;
+  width: 18%;
   height: 400px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
   box-sizing: border-box;
   margin-right: 10px;
   display: flex;
   flex-direction: column;
-  background-color: white ;
+  background-color: rgb(255, 255, 255) ;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 .baseList_box_img{
   margin-top:20px;
-  width: 100%;
+  width: 70%;
   height: 70%;
   object-fit: cover;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .baseList_box_content_name{
   margin-bottom: 2rem;
 }
 .baseList_box_content{
+  background-color: #ced4da;
+  border-top: 1.5px solid black; /* 윗부분 선 굵기와 색상 조절 */
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
   margin-top:10px ;
 }
 .base_name{
@@ -161,15 +169,21 @@ li{
 }
 
 .HomeBtn{
+  color:white;
   position:fixed;
-  left:85em;
-  top:45em;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  transform: translate(-50%, -50%);
-  background-color:  white;
+  left:90%;
+  top:85%;
+  display: inline-block;
   width: 5em;
-  height: 3em;
-  padding-top: 2em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2048 2048'%3E%3Cpath fill='%23000' d='m1024 165l941 942l-90 90l-83-82v805h-640v-640H896v640H256v-805l-83 82l-90-90zm640 1627V987l-640-640l-640 640v805h384v-640h512v640z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 .makeCocktailBtn{
