@@ -33,7 +33,7 @@
 
         try {
 
-          const response = await axios.post('http://localhost:8080/api/v1/order/orderCocktail', orderData);
+          const response = await axios.post('http://3.38.22.113:8080/api/v1/order/orderCocktail', orderData);
           console.log("Server Response:", response.data.data);
 
           if (response.data !== null) {
