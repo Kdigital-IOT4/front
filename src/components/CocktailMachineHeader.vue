@@ -1,8 +1,8 @@
 <template>
     <div class="container-hed">
-        <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
-        <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
-        <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
+        <router-link to="/CocktailMachinePreviewPage" class="HedBtn1">칵테일 미리보기</router-link>
+        <router-link to="/BaseRegistrationPage" class="HedBtn2">베이스 등록</router-link>
+        <router-link to="/StuffRegistrationPage" class="HedBtn3">재료 등록</router-link>
         <div></div>
         <button class="HedBtn4" @click="OnModal"></button>
     </div>
@@ -30,47 +30,42 @@ export default {
 };
 </script>
 <style>
-.container-hed{
-    display: grid;
-    grid-template-rows: 3em;
-    grid-template-columns: 1fr 1fr 1fr 4fr 1fr;
+  .container-hed {
+    display: flex;
+    align-items: center;
     background-color: #4CAF50;
-    left:0;
-    top:20px;
-    width: 100%;
-  }
-  
-  .HedBtn1:before {
-    content: '칵테일 미리보기';
-    color: white;
-    line-height : 3em;
-    text-decoration: none;
+    padding: 0 10px;
 }
 
-.HedBtn2:before {
-  content: '베이스 등록';
-  color: white;
-    line-height : 3em;
-}
-.HedBtn3:before {
-  content: '재료 등록';
+.HedBtn1 {
   color: white;
   line-height : 3em;
+  text-decoration: none;
+}
+
+.HedBtn2 {
+  color: white;
+    line-height : 3em;
+    margin-left: 2em;
+    text-decoration: none;
+}
+.HedBtn3 {
+  color: white;
+  line-height : 3em;
+  margin-left: 2em;
+  text-decoration: none;
 }
 
 
 .HedBtn4 {
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
+   margin-left: auto; 
 }
 
 .HedBtn4:before {
   content: '개시';
   line-height : 3em;
-  margin-left: 80px;
-  text-decoration: underline;
   text-decoration-color: black;
   font-size: 17px;
   color: white;

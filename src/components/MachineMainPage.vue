@@ -1,11 +1,4 @@
 <template>
-  <div class="container-hed">
-    <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
-    <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
-    <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
-    <button class="HedBtn4" @click="OnModal"></button>
-  </div>
- 
     <div class="MachinInfo_container">
       <div class="machine_id">
         <h1>{{ machineInfo.name }}</h1>
@@ -35,6 +28,7 @@
   <router-link to="/cocktail/make" class="makeCocktailBtn">칵테일 만들기</router-link>
   <router-link to="/" class="HomeBtn">홈</router-link>
   <machine-start-modal class = "Modal" v-show="show" v-on:close="OnModal"></machine-start-modal>
+  <MachineHeader></MachineHeader>
 </template>
 
 <script>
@@ -44,9 +38,10 @@ import { usePhoneStore } from "@/stores/phoneNumberStore";
 
 import axios from 'axios';
 import MachineStartModal from './MachineStartModal.vue';
+import MachineHeader from "@/components/CocktailMachineHeader.vue"
 
 export default {
-  components: { MachineStartModal },
+  components: { MachineStartModal ,MachineHeader},
 
   data() {
     return {
