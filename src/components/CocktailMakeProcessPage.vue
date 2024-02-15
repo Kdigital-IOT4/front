@@ -2,9 +2,23 @@
   <div class="root_container">
     <div class="process_container">
       <div class="process_container_line"></div>
+
       <div class="process_container_imgBox">
         <img src="../assets/img/baro-icon.svg">
       </div>
+
+      <div class="process_container_content">
+
+        <div class="process_container_content_detail">
+          <h2>안녕하세요! default 님 칵테일제조를 시작하겠습니다.</h2>
+        </div>
+
+        <div class="process_container_content_btn">
+          <button>시작하기</button>
+        </div>
+
+      </div>
+      
     </div>
   </div>
  
@@ -151,13 +165,13 @@
   }
   .process_container{
     position: relative;
-    width: 350px;
-    height: 190px;
+    width: 750px;
+    height: 350px;
     background: #333;
     transition: 0.7s;
   }
   .process_container:hover{
-    height: 450px;
+    height: 550px;
   }
 
   .process_container .process_container_line{
@@ -171,10 +185,10 @@
     position: absolute;
     top: 50%;
     left : 50%;
-    width: 600px;
-    height: 120px;
+    width: 800px;
+    height: 300px;
     background: linear-gradient(transparent, #45f3ff , #45f3ff , #45f3ff , transparent);
-    animation: animate 4s linear infinite;
+    animation: animate 7s linear infinite;
   }
 
   .process_container .process_container_line::after{
@@ -226,6 +240,51 @@
     left: 10px;
     width: calc(100% - 20px);
     height: calc(100% - 20px);
+  }
+
+  .process_container .process_container_content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .process_container .process_container_content .process_container_content_detail{
+    padding: 40px;
+    text-align: center;
+    align-items: center;
+    transition: 0.4s;
+    transform: translateY(145px);
+    margin-bottom: -1.5em;
+  }
+
+  .process_container .process_container_content .process_container_content_detail h2{
+    font-size : 1.5em;
+    font-weight: 500;
+    color: #45f3ff;
+    line-height: 1.2em;
+  }
+  .process_container_content_btn{
+    display: flex;
+
+  }
+  .process_container_content_btn button{
+    padding :10px 30px;
+    border :none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 2em;
+    font-weight: 600;
+    background: #45f3ff;
+    color: #222;
+    cursor: pointer;
+    margin-bottom: 1em;
+  }
+  .process_container_content_btn button:hover{
+    background: #0b585e;
   }
   @keyframes animate{
     0%{
