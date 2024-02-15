@@ -1,10 +1,13 @@
 <template>
-  <div>
-    <button @click="startMakeCocktail" >
-      {{ isStartFlag ? 'Start making Cocktail' : (isEndFlag ? 'Your Cocktail Make is done' : 'Cocktail is in progress...') }}
-    </button>
+  <div class="root_container">
+    <div class="process_container">
+      <div class="process_container_line"></div>
+      <div class="process_container_imgBox">
+        <img src="../assets/img/baro-icon.svg">
+      </div>
+    </div>
   </div>
-<button @click="backMakeCocktailPage()" :disabled="!isEndFlag">돌아가기</button>
+ 
 </template>
   
   <script>
@@ -135,5 +138,111 @@
   </script>
   
   <style scoped>
+  *{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .root_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .process_container{
+    position: relative;
+    width: 350px;
+    height: 190px;
+    background: #333;
+    transition: 0.7s;
+  }
+  .process_container:hover{
+    height: 450px;
+  }
+
+  .process_container .process_container_line{
+    position: absolute;
+    inset: 0;
+    background: #000;
+    overflow: hidden;
+  }
+  .process_container .process_container_line::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left : 50%;
+    width: 600px;
+    height: 120px;
+    background: linear-gradient(transparent, #45f3ff , #45f3ff , #45f3ff , transparent);
+    animation: animate 4s linear infinite;
+  }
+
+  .process_container .process_container_line::after{
+    content: '';
+    position: absolute;
+    inset : 3px;
+    background: #292929;
+
+  }
+
+
+  .process_container .process_container_imgBox{
+    position: absolute;
+    top: -50px;
+    left : 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    background: #000;
+    transition: 0.7s;
+    z-index: 10;
+    overflow: hidden;
+  }
+  .process_container .process_container_imgBox::before{
+    content: '';
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 500px;
+    height: 150px;
+    transform: translate(-50% , -50%);
+    background: linear-gradient(transparent, #ff3c7b , #ff3c7b , #ff3c7b , transparent);
+    animation: animate_in 6s linear infinite;
+  }
+  .process_container .process_container_imgBox::after{
+    content: '';
+    position: absolute;
+    inset : 3px;
+    background: #292929;
+  }
+  .process_container:hover .process_container_imgBox{
+    width: 250px;
+    height: 250px;
+  }
+  .process_container .process_container_imgBox img {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+  }
+  @keyframes animate{
+    0%{
+      transform: translate(-50% , -50%) rotate(0deg);
+    }
+    100%{
+      transform: translate(-50% , -50%) rotate(360deg);
+    }
+  }
+
+  @keyframes animate_in{
+    0%{
+      transform: translate(-50% , -50%) rotate(360deg);
+    }
+    100%{
+      transform: translate(-50% , -50%) rotate(0deg);
+    }
+  }
   </style>
   
