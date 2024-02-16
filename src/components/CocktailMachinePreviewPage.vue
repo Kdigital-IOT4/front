@@ -133,6 +133,26 @@ export default {
     top:20em;
     grid-column-gap: 5em;
     grid-row-gap: 8em;
+    animation: fadein 3s;
+  -webkit-animation: fadein 3s;
+}
+
+@keyframes fadein {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 
 .Modal{

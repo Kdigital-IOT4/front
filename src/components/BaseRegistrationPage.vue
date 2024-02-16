@@ -176,7 +176,9 @@ export default {
             0 0 2.8rem #00FFA0,
             inset 0 0 1.3rem #00FFA0; 
 }
-
+.RegistrationBtn:hover {
+      animation: jelly 0.5s;
+  }
 .BaseList{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -211,6 +213,23 @@ export default {
             inset 0 0 1.3rem #f32179; 
 }
 
+.DeleteBtn:hover {
+      animation: jelly 0.5s;
+  }
+  
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
 .fade-in-page{
   animation: fadein 3s;
   -webkit-animation: fadein 3s;
