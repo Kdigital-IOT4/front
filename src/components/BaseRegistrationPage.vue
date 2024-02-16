@@ -2,15 +2,23 @@
   <div class="fade-in-page">
     <div class="container-BaseInput">
         <machine-start-modal v-show="show" v-on:close="OnModal"></machine-start-modal>
+        <p>등록가능한 베이스 리스트</p>
         <div class="BaseList">
             <div v-for="x in BaseList" v-bind:key="x">
                 <p>{{ x.seq }}.{{ x.kr_Name }}</p>
             </div>
         </div>
 
+        <p>현재 기계의 등록된 베이스 리스트</p>
+        <div class="BaseList">
+            <div v-for="x in MachineBaseData.baseList" v-bind:key="x">
+                <p>{{ x.base_line }}.{{ x.kr_Name }}</p>
+            </div>
+        </div>
+
         <div class="InputGroup">
-            <input v-model="BaseSeq" placeholder="베이스 번호를 입력하세요.">
-            <input class="InputBaseLine" v-model="Machine_Base_Line" placeholder="몇번째에 넣겠습니까?">
+            <input v-model="BaseSeq" type = 'text' placeholder="베이스 번호를 입력하세요.">
+            <input class="InputBaseLine" type = 'text' v-model="Machine_Base_Line" placeholder="몇번째에 넣겠습니까?">
         </div>
 
         <button class="RegistrationBtn" @click="submitBase">등록하기</button>
@@ -23,6 +31,7 @@
 <script>
 import axios from 'axios';
 import MachineHeader from "@/components/CocktailMachineHeader.vue"
+import { useMachineStore } from "@/stores/store";
 
 export default {
   components :{
@@ -33,10 +42,13 @@ export default {
       BaseSeq:'',
       Machine_Base_Line:'',
       BaseList: [],
+      MachineId : useMachineStore().machineId,
+      MachineBaseData : {},
     };
   },
   mounted() {
         this.GetBaseDataList();
+        this.GetMachineBaseDataList();
   },
   methods: {
     GetBaseDataList(){
@@ -56,10 +68,42 @@ export default {
                 console.log(error);
             });
     },
-    submitBase(){
+    async GetMachineBaseDataList() {
+      try {
+        // 수정된 부분: 데이터를 서버에 보냅니다.
+        const response = await axios.post('http://3.38.22.113:8080/api/v1/machine/data/read', {
+          machineId: "MachineId123",
+        });
+
+        this.MachineBaseData = response.data;
+        console.log(this.MachineBaseData);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    },
+    async submitBase(){
         //axios.post('');
         //json으로 보내야함
-        console.log('submitBase');
+        console.log(this.BaseSeq);
+        console.log(this.Machine_Base_Line);
+        var newData = {
+        "base_seq": this.BaseSeq,
+        "machine_base_line" : this.BaseSeq
+        };
+        this.BaseList.push(newData);
+
+        console.log(this.BaseList);
+      //   try {
+      //   // 수정된 부분: 데이터를 서버에 보냅니다.
+      //   const response = await axios.post('http://3.38.22.113:8080/api/v1/machine/data/read', {
+      //     machineId: "MachineId123",
+      //   });
+
+      //   this.MachineBaseData = response.data;
+      //   console.log(this.MachineBaseData);
+      // } catch (error) {
+      //   console.error('Error:', error);
+      // }
     },
   },
 };
