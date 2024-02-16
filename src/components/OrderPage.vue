@@ -144,7 +144,8 @@ justify-content: center;
   flex-direction: row;
   margin-right: 20px;
   margin-top: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 5px 3px;
 }
 
 .cocktail_image_box {

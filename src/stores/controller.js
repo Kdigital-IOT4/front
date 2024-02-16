@@ -305,29 +305,34 @@ export const useControllerStore = defineStore("controllerStore", {
           new URLSearchParams({
             commandText: value,
           })
-      ).then((response) => {
-        const reader = response.body.getReader();
-        if (response.body.locked) {
-          console.log("Response body is locked!");
-        }
-        return new ReadableStream({
-          start(controller) {
-            return pump();
-            function pump() {
-              return reader.read().then(({ done, value }) => {
-                // When no more data needs to be consumed, close the stream
-                if (done) {
-                  controller.close();
-                  return;
-                }
-                // Enqueue the next data chunk into our target stream
-                controller.enqueue(value);
-                return pump();
-              });
-            }
-          },
+      )
+        .then((response) => {
+          const reader = response.body.getReader();
+          if (response.body.locked) {
+            console.log("Response body is locked!");
+          }
+          return new ReadableStream({
+            start(controller) {
+              return pump();
+              function pump() {
+                return reader.read().then(({ done, value }) => {
+                  // When no more data needs to be consumed, close the stream
+                  if (done) {
+                    controller.close();
+                    return;
+                  }
+                  // Enqueue the next data chunk into our target stream
+                  controller.enqueue(value);
+                  return pump();
+                });
+              }
+            },
+          });
+        })
+        .catch((error) => {
+          // Log and handle the error
+          console.error("Error occurred:", error);
         });
-      });
     },
     async controlPosition(x, y, z, feedrate) {
       this.positionList = [];

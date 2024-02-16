@@ -4,14 +4,13 @@
       <h1>머신 로그인</h1>
     </div>
     <div class="container-machineLogin">
-      <form @submit.prevent="submitForm">
+      <div class="machineLogin_box">
+        <form @submit.prevent="submitForm">
         <div class="form-group">
-          <label for="id">Id:</label>
           <input v-model="machineId" type="text" id="id" name="id" placeholder="Enter your id">
         </div>
 
         <div class="form-group">
-          <label for="password">Password:</label>
           <input v-model="machinePassword" type="password" id="password" name="password" placeholder="Enter your password">
         </div>
 
@@ -19,9 +18,11 @@
           <input type="submit" value="Login">
         </div>
       </form>
-
-      <router-link to="/register/machine" class="MachineRegister-button">머신등록</router-link>
-      <router-link to="/login" class="back-button">돌아가기</router-link>
+      <div class="machineLogin_box_btnBox">
+        <router-link to="/register/machine" class="MachineRegister-button">머신등록</router-link>
+        <router-link to="/login" class="back-button">돌아가기</router-link>
+      </div>
+      </div>
     </div>
   </div>
 </template>
@@ -79,58 +80,103 @@ export default {
     justify-content: center;
     align-items: center;
     height: 80vh;
+    background-color: #111;
+    color: #fff;
     margin-top: -50px;
+  }
+  .container-machineLogin-titleBox {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .container-machineLogin-titleBox h1 {
+    font-size: 24px;
+    color: #0ff; /* Neon color for the title */
   }
 
   .container-machineLogin {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 400px;
+    animation: fadeInBottom 2s;
+  }
+  .container-machineLogin::before{
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(315deg , #4dff03 , #00d0ff);
+    display: block;
   }
 
-  form {
-    max-width: 300px;
-    margin: 0 auto;
+  .container-machineLogin::after{
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(315deg , #4dff03 , #00d0ff);
+    display: block;
+    filter: blur(30px);
   }
 
+  .machineLogin_box{
+    inset: 5px;
+    z-index: 2;
+    background: rgba(0,0,0,0.05);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .machineLogin_box input{
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 1rem;
+    background: rgba(0,0,0,0.02);
+  }
+  .machineLogin_box input:hover{
+    border: 1px solid rgba(0,0,0,0.4);
+    padding: 1.1rem;
+    background: rgba(0,0,0,0.1);
+  }
   .form-group {
     margin-bottom: 15px;
   }
 
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+  .machineLogin_box_btnBox{
+    margin-top: 3rem;
   }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-
-  input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-  }
-
-  input[type="submit"]:hover {
-    background-color: #45a049;
-  }
-
-.back-button{
-    text-decoration: none;
-    color: black;
-}
-
 .MachineRegister-button{
-    text-decoration: none;
-    color: black;
+  color:#fff;
+  font-size: 24px;
+  margin-right: 1rem;
+  text-decoration-line:none;
+}
+.back-button{
+  color:#fff;
+  font-size: 24px;
+  text-decoration-line:none;
 }
 
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 </style>
