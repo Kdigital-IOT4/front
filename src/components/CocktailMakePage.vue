@@ -126,6 +126,21 @@
     color: #fcf1f1;
     background: rgba(0, 0, 0, 0.07);
   }
+  .order-list{
+    overflow-y: scroll;
+    max-height: 400px;
+    margin-top :3rem;
+  }
+  .order-list::-webkit-scrollbar{
+    width: 4px;
+  }
+  .order-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .order-list::-webkit-scrollbar-track{
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
   .cocktail_make_container {
     position: relative;
     height: 600px;

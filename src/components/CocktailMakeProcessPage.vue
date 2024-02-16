@@ -44,7 +44,7 @@
         controllerStore : useControllerStore(),
         messageInput : null,
         CodeCommands : [],
-        compeletedMesaage : "fail",
+        compeletedMesaage : "success",
 
         //보여줄 정보.. start
         orderTime : null,
@@ -84,9 +84,9 @@
                 this.recipeList = this.orderData.data.recipeList
 
                 //log start
-                console.log("주문시각 : " , this.orderTime );
-                console.log("유저폰넘버 : " , this.userPhoneNumber);
-                console.log("레시피 리스트 : " ,  this.recipeList);
+                //console.log("주문시각 : " , this.orderTime );
+                //console.log("유저폰넘버 : " , this.userPhoneNumber);
+                //console.log("레시피 리스트 : " ,  this.recipeList);
                 //log end
                 // 보여줄 data setting end
                 
@@ -106,11 +106,11 @@
         async orderProcess__request_Gcode() {
           try {
             const response = await axios.get(`http://3.38.22.113:8080/api/v1/order/makeCocktail/${this.orderCode}/fast`);
-            console.log("Server Response:", response.data);
+            //console.log("Server Response:", response.data);
 
             if(response != null){
               this.parseGcode(response.data.gCode)
-              console.log(this.CodeCommands);
+              //console.log(this.CodeCommands);
 
             }
           }catch (error) {
@@ -131,7 +131,7 @@
        async StartSocket(){
          this.controllerStore.startSocket();
          if(this.controllerStore.connected){
-          console.log("칵테일 기계와 소캣연결 성공..")
+          //console.log("칵테일 기계와 소캣연결 성공..")
          }
        },
        parseGcode(gCode){
@@ -150,11 +150,11 @@
               if(this.isPaused == false){
                 for (let i = 0; i < this.CodeCommands.length; i++){
                   const gCode = this.CodeCommands[i];
-                  console.log("요청 동작 작동 중 ... "+ gCode )
+                  //console.log("요청 동작 작동 중 ... "+ gCode )
 
                   if (gCode.includes('$J=G53X0Y0Z0F20000')) {
                     this.controllerStore.sendCommand(gCode);
-                    console.log("일시정지.. 새로운 컵을 받을때까지 다음 동작 스탑");
+                    //console.log("일시정지.. 새로운 컵을 받을때까지 다음 동작 스탑");
                     alert("일시정지.. 새로운 컵을 받을때까지 다음 동작 스탑");
                     this.isPaused = true;
                     this.CodeCommands.splice(i, 1);
@@ -170,7 +170,7 @@
 
 
                   //check less list
-                  console.log("남은 데이터 : "+this.CodeCommands)
+                  //console.log("남은 데이터 : "+this.CodeCommands)
                 }
           
               }
@@ -246,7 +246,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 60vh;
+    max-height: 800px;
   }
   .process_container{
     position: relative;
