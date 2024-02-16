@@ -1,15 +1,21 @@
 <template>
-  <transition name="fade">
-    <div v-if="show" id="app-main" class="fadeInLeft">
-      <div class="container-main">
-        <div class="overlay-text">
-          <h1 class="custom-font">칵테일</h1>
-        </div>
-        <router-link to="/Menu" @click="goToCocktailMenu" class="cocktail-button">칵테일 메뉴</router-link>
-        <router-link to="/login" @click="goToOrderPage" class="order-button">주문하기</router-link>
-      </div>
+
+<div id="#app-main" class="root_container">
+  <div class="intro_box_1">
+    <div class="intro_box_1_img">
+      <img src="../assets/img/baro-icon.svg">
     </div>
-  </transition>
+    <div class="intro_box_1_content">
+      <h2>BaRo</h2>
+      <span>baro는 자동 칵테일 제조 서비스로 고객들에게 탁월한 경험을 제공합니다.</span>
+    </div>
+  </div>
+  <div class="intro_box_2">
+    <button @click="goToCocktailMenu">USER</button>
+    <button @click="goToOrderPage() ">MACHINE</button>
+  </div>
+  <div class="intro_box"></div>
+</div>
 </template>
 
 <script>
@@ -29,7 +35,7 @@ export default {
     goToOrderPage() {
       console.log('주문 페이지로 이동합니다.');
       // 주문 페이지로 이동하는 로직
-       this.$router.push('/login');
+       this.$router.push('/login/machine');
     },
   },
   mounted() {
@@ -39,6 +45,11 @@ export default {
 </script>
 
 <style>
+:root {
+  --clr-neon: hsl(317 100% 54%);
+  --clr-bg: hsl(323 21% 16%);
+}
+
 #app-main {
   font-family: 'Diphylleia', 'Avenir', 'Helvetica', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -48,54 +59,131 @@ export default {
   margin-top: 60px;
   position: relative;
 }
-
-.container-main {
-  background-image: url('../assets/img/main.jpg'); 
-  background-size: cover;
-  background-position: center;
-  height: 400px;
+.root_container{
   width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: flex-start; 
-  align-items: flex-end; 
+  height: 1800px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.intro_box_1 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: #111; 
+    color: #fff; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
 }
 
-.overlay-text {
+.intro_box_2 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: #111; 
+    color: #fff; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(255, 19, 109, 0.5); 
+    margin-top:2rem;
+    justify-content: center;
+    align-items: center;
+
+}
+.intro_box_2 :first-child{
+  margin-right: 8rem;
+  margin-left: 7rem;
+}
+
+
+.intro_box_2 button{
+  font-size: 4rem;
+
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--clr-neon);
+    border: var(--clr-neon) 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+
+    position: relative;
+  
+}
+.intro_box_2 button::before{
+  pointer-events: none;
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  color: #fff;
-  font-size: 28px;
-}
+  background: var(--clr-neon);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-.cocktail-button,
-.order-button {
-  font-size: 1.5em;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
 }
-
-.cocktail-button {
-  background-color: #000;
-  color: #fff;
-  margin-left: 10px;
+.intro_box_2 button::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-neon);
+  opacity: 0;
+  background-color: var(--clr-neon);
+  z-index: -1;
+  transition: opacity 100ms linear;
 }
-
-.order-button {
-  background-color: #ffd700;
-  color: #000;
+.intro_box_2 button:hover, .intro_box_2 button:focus{
+  color: var(--clr-bg);
+  text-shadow: none;
 }
-
-.custom-font {
-  font-family: 'Diphylleia', sans-serif;
+.intro_box_2 button:hover::before, .intro_box_2 button:focus::before{
+  opacity: 1;
 }
+.intro_box_2 button:hover::after, .intro_box_2 button:focus::after{
+  opacity: 1;
+}
+.intro_box_1:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #0ff;
+  border-radius: 10px; 
+  pointer-events: none; 
+}
+.intro_box_1_img{
+  width: 40%;
+  max-height: 600px;
+}
+.intro_box_1_content{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+}
+.intro_box_1_content h2 {
+  font-size: 64px;
+  color: #0ff; 
+}
+.intro_box_1_content span{
+  font-size: 26px;
+  text-align: center;
+  margin-left: 3rem;
+  margin-top: 2rem;
+}
 /* Fade 트랜지션 효과 시작 */
 @keyframes fadeInLeft {
   from {
@@ -107,9 +195,21 @@ export default {
     transform: translateX(0);
   }
 }
-
-#app-main.fadeInLeft {
-  animation: fadeInLeft 3.5s;
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.intro_box_1{
+  animation: fadeInLeft 2s;
+}
+.intro_box_2{
+  animation:  fadeInRight 2s;
 }
 /* Fade 트랜지션 효과 끝 */
 </style>
