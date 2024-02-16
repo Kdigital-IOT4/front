@@ -69,7 +69,7 @@
 
         async orderProcess_request_data(){
             try{
-              const response = await axios.get(`http://localhost:8080/api/v1/order/read/orderProcess/${this.orderCode}`);
+              const response = await axios.get(`http://3.38.22.113:8080/api/v1/order/read/orderProcess/${this.orderCode}`);
               console.log("OrderProcess - data - Response:", response.data.status);
               this.orderData = response.data;
 
