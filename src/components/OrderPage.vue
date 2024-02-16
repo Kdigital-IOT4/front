@@ -107,6 +107,7 @@ export default {
   margin-left: 3rem;
   width: 100px;
   height: 60px;
+  z-index: 2;
 }
 .pay_button{
   position: fixed;
@@ -115,6 +116,7 @@ export default {
   margin-right: 3rem;
   width: 100px;
   height: 60px;
+  z-index: 2;
 }
 .order_container {
 position: relative;
@@ -128,6 +130,7 @@ border-radius: 10px;
 box-sizing: border-box;
 padding-top: 1em;
 overflow-y: auto; 
+z-index: 1;
 }
 
 .cart_cocktail_box {
