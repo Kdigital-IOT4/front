@@ -146,8 +146,8 @@ li{
   margin-bottom: 2rem;
 }
 .baseList_box_content{
-  background-color: #ced4da;
-  border-top: 1.5px solid black; /* 윗부분 선 굵기와 색상 조절 */
+  background: rgba(1, 100, 31, 0.1);
+  border-top: 1px solid rgba(1, 100, 31, 0.1); 
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   margin-top:10px ;

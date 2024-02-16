@@ -170,6 +170,16 @@ export default {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+
+  position: fixed;
+  bottom: 3rem;
+  right: 7rem;  
+}
+.cocktail_cart:hover{
+  width: 7em;
+  height: 7em;
+  transition-delay: 0.2s;
+
 }
 img {
   max-width: 100%;

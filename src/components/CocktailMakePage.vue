@@ -44,11 +44,11 @@
         <!-- Additional Info Modal -->
         <div v-if="showAdditionalInfoModal" class="additional-info-modal">
           <div class="modal-content">
-            <h3>Recipe List</h3>
-            <ul>
-              <li v-for="recipe in currentOrder.recipeList" :key="recipe.cocktail_en_name">
-                <p>Cocktail: {{ recipe.cocktail_en_name }}</p>
-                <p>Price: {{ recipe.cocktail_price }}</p>
+            <h3 class="modal-content-recipe-header">Recipe List</h3>
+            <ul class="modal-content-recipeList">
+              <li v-for="recipe in currentOrder.recipeList" :key="recipe.cocktail_en_name" class="modal-content-recipeList-content">
+                <p>{{ recipe.cocktail_en_name }}</p>
+                <p>{{ recipe.cocktail_price }} ₩</p>
               </li>
             </ul>
     
@@ -268,11 +268,31 @@
   
   .modal-content {
     background: #fff;
-    padding: 20px;
+    padding: 60px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: left;
+    text-align: center;
+    position: relative;
   }
-  
+  .modal-content-recipe-header{
+    position: absolute;
+    top:0;
+    left:35%;
+  }
+  .modal-content-recipeList{
+  }
+  .modal-content-recipeList-content{
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
+  .modal-content-recipeList-content:first-child{
+    margin-top:1.8rem;
+  }
+  .modal-content button{
+    border: none;
+    padding : 1.4rem;
+    border-radius: 0.5rem;
+    margin-top:3rem;
+  }
   </style>
   
