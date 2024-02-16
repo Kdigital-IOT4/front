@@ -27,8 +27,15 @@ import CocktailDetailModal from "@/components/modal/CocktailDetailModal";
 import OrderConnectPage from "@/components/OrderConnectPage";
 import CocktailMakePage from "@/components/CocktailMakePage";
 import CocktailMakeProcessPage from "@/components/CocktailMakeProcessPage";
+import MachineMainIPRegisterPage from "@/components/MachineMainIPRegisterPage";
 
 const routes = [
+  {
+    path: "/machine/ip",
+    name: "MachineMainIPRegisterPag",
+    component: MachineMainIPRegisterPage,
+  },
+
   {
     path: "/cocktail/make/process",
     name: "CocktailMakeProcessPage",

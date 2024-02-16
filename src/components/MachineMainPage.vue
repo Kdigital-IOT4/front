@@ -3,12 +3,13 @@
     <router-link to="/CocktailMachinePreviewPage" class="HedBtn1"></router-link>
     <router-link to="/BaseRegistrationPage" class="HedBtn2"></router-link>
     <router-link to="/StuffRegistrationPage" class="HedBtn3"></router-link>
+    <router-link to="/machine/ip" class="HedBtn5">IP등록</router-link>
     <button class="HedBtn4" @click="OnModal"></button>
   </div>
  
     <div class="MachinInfo_container">
       <div class="machine_id">
-        <h1>{{ machineInfo.name }}</h1>
+        <h1>{{ machineInfo.name }} <p v-if="!machineIp">머신 IP를 등록하세요</p></h1>
       </div>
       
       <ul class="baseList_container">
@@ -41,6 +42,7 @@
 import { useMachineStore } from "@/stores/store";
 import { useCartStore } from "@/stores/cart";
 import { usePhoneStore } from "@/stores/phoneNumberStore";
+import { useControllerStore } from "@/stores/controller";
 
 import axios from 'axios';
 import MachineStartModal from './MachineStartModal.vue';
@@ -53,11 +55,11 @@ export default {
       show: false,
       machineId: useMachineStore().machineId,
       machineData: {},
+      machineIp: "",
     };
   },
   computed: {
     machineInfo() {
-      // 여기에 다른 필요한 로직 추가
       return {
         name: this.machineId || "Default Machine Name",
         info: "Machine Information",
@@ -65,6 +67,10 @@ export default {
     },
   },
   methods: {
+    getIp(){
+      this.machineIp = useControllerStore().machineIp;
+    },
+
     OnModal() {
       this.show = !this.show;
     },
@@ -77,7 +83,7 @@ export default {
         });
 
         // 응답을 콘솔에 출력합니다.
-        console.log('Server Response:', response.data);
+        //console.log('Server Response:', response.data);
         useCartStore()
         usePhoneStore()
         useMachineStore().setMachineId(useMachineStore().machineId);
@@ -89,8 +95,8 @@ export default {
     },
   },
   mounted() {
-    // 컴포넌트가 마운트되면서 바로 getMachineData를 호출합니다.
     this.getMachineData();
+    this.getIp();
   },
 };
 
@@ -106,6 +112,10 @@ export default {
 .machine_id {
   flex: 2; /* 2:8 비율로 설정 */
   color: wheat;
+}
+.machine_id p {
+  color: #fff;
+  background: firebrick;
 }
 
 .baseList_container {
@@ -219,5 +229,12 @@ li{
   height: 3.5rem;
   transition-delay: 0.2s;
   background: linear-gradient(360deg, #e7e7e7, #9e9e9e);
+}
+.HedBtn5{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
 }
 </style>
