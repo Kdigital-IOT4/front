@@ -1,0 +1,19 @@
+# docker-compose.yml
+
+version: "3"
+services:
+  vue-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # 호스트 포트를 3000으로 변경
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - vue-app
