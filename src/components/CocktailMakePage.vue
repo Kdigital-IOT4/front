@@ -1,67 +1,71 @@
 <template>
     <div class="cocktail_make_container">
-      <div class="cocktail_make_header">
-        <h2>Waiting List</h2>
-      </div>
-  
-      <div v-if="orderList.length > 0" class="order-list">
-        <table class="order-table">
-          <thead>
-            <tr>
-              <th class="order-code">주문 코드</th>
-              <th class="phone-number">전화번호</th>
-              <th class="order-time">주문 시간</th>
-              <th class="plus-data">추가정보</th>
-              <th class="make-cocktail">만들기</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(order, index) in orderList" :key="index" class="order-item">
-              <td class="order-code">{{ order.orderCode }}</td>
-              <td class="phone-number">{{ order.userPhoneNumber }}</td>
-              <td class="order-time">{{ order.createOrderTime }}</td>
-              <td class="plus-data">
-                <button @click="showAdditionalInfo(order)" class="plus-data-btn">
-                    정보보기
-                </button>
-              </td>
-              <td class="make-cocktail" >
-                <button @click="makeCocktail(order.orderCode)" class="make-cocktail-btn">
+      <div class="cocktail_make_container_box">
 
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="cocktail_make_header">
+          <h2>Waiting List</h2>
+        </div>
   
-      <div v-else>
-        <p class="no-orders">주문이 없습니다.</p>
-      </div>
-  
-      <!-- Additional Info Modal -->
-      <div v-if="showAdditionalInfoModal" class="additional-info-modal">
-        <div class="modal-content">
-          <h3>Recipe List</h3>
-          <ul>
-            <li v-for="recipe in currentOrder.recipeList" :key="recipe.cocktail_en_name">
-              <p>Cocktail: {{ recipe.cocktail_en_name }}</p>
-              <p>Price: {{ recipe.cocktail_price }}</p>
-            </li>
-          </ul>
-  
-          <h3>Base List</h3>
-          <ul>
-            <li v-for="base in currentOrder.recipeList[0].baseList" :key="base.base_seq">
-              <p>Base: {{ base.base_en_name }} ({{ base.base_kr_name }})</p>
-              <p>Amount: {{ base.amount }}</p>
-            </li>
-          </ul>
-  
-          <button @click="closeAdditionalInfoModal">닫기</button>
+        <div v-if="orderList.length > 0" class="order-list">
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th class="order-code">주문 코드</th>
+                <th class="phone-number">전화번호</th>
+                <th class="order-time">주문 시간</th>
+                <th class="plus-data">추가정보</th>
+                <th class="make-cocktail">만들기</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(order, index) in orderList" :key="index" class="order-item">
+                <td class="order-code">{{ order.orderCode }}</td>
+                <td class="phone-number">{{ order.userPhoneNumber }}</td>
+                <td class="order-time">{{ order.createOrderTime }}</td>
+                <td class="plus-data">
+                  <button @click="showAdditionalInfo(order)" class="plus-data-btn">
+                      정보보기
+                  </button>
+                </td>
+                <td class="make-cocktail" >
+                  <button @click="makeCocktail(order.orderCode)" class="make-cocktail-btn">
+
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div v-else>
+          <p class="no-orders">주문이 없습니다.</p>
+        </div>
+    
+        <!-- Additional Info Modal -->
+        <div v-if="showAdditionalInfoModal" class="additional-info-modal">
+          <div class="modal-content">
+            <h3>Recipe List</h3>
+            <ul>
+              <li v-for="recipe in currentOrder.recipeList" :key="recipe.cocktail_en_name">
+                <p>Cocktail: {{ recipe.cocktail_en_name }}</p>
+                <p>Price: {{ recipe.cocktail_price }}</p>
+              </li>
+            </ul>
+    
+            <h3>Base List</h3>
+            <ul>
+              <li v-for="base in currentOrder.recipeList[0].baseList" :key="base.base_seq">
+                <p>Base: {{ base.base_en_name }} ({{ base.base_kr_name }})</p>
+                <p>Amount: {{ base.amount }}</p>
+              </li>
+            </ul>
+    
+            <button @click="closeAdditionalInfoModal">닫기</button>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
+      
   </template>
   
   <script>
@@ -113,23 +117,64 @@
   .plus-data-btn{
     width: 6rem;
     height: 3rem;
+    border: none;
+    background: rgba(0, 0, 0, 0.01);
+    color: #fff;
+    font-size: 18px;
+  }
+  .plus-data-btn:hover{
+    color: #fcf1f1;
+    background: rgba(0, 0, 0, 0.07);
   }
   .cocktail_make_container {
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
+    position: relative;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+  }
+.cocktail_make_container_box{
+  z-index: 2;
+}
+  .cocktail_make_container::before {
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg , #ffdc00 , #ff0058);
+  }
+  .cocktail_make_container::after {
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg , #ffdc00 , #ff0058);
+    filter: blur(35px);
+    
   }
   
   .cocktail_make_header {
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
     text-align: center;
+    position: absolute;
+    top:0;
+    left: 45%;
+    margin-top:2rem
+  }
+
+  .cocktail_make_header h2{
+    font-size : 32px;
+    color: #fff;
   }
   
-  .cocktail_make_header h2 {
-    font-size: 20px;
-    font-weight: bold;
-  }
   
   .order-list {
     overflow-x: auto;
@@ -139,18 +184,20 @@
     width: 100%;
     border-collapse: collapse;
     border-radius: 5px;
+    z-index: 3;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
   
   .order-table th, td {
     padding: 10px;
+    color: #fff;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
   .order-table th {
     font-weight: bold;
-    background-color: #f7f7f7;
+    color: #fff;
   }
   
   .order-code, .phone-number, .order-time, .plus-data {
@@ -167,8 +214,8 @@
     height: 2.5rem;
     font-size: 14px;
     font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
+    color: #7134ff;
+    background-color: #7134ff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
