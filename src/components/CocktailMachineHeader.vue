@@ -34,7 +34,7 @@ export default {
     display: grid;
     grid-template-rows: 3em;
     grid-template-columns: 1fr 1fr 1fr 4fr 1fr;
-    background-color: #4CAF50;
+    background: linear-gradient(360deg, #030303, #535353);
     left:0;
     top:20px;
     width: 100%;

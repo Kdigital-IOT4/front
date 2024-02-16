@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 header {
-  background-color: #4CAF50;
+  background: linear-gradient(360deg, #030303, #535353);
   color: white;
   padding: 0;
   text-align: center;

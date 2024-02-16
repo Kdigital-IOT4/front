@@ -14,7 +14,7 @@
       <ul class="baseList_container">
         <li v-for="base in machineData.baseList" :key="base.base_seq" class="baseList_box">
             <div class="baseList_box_img">
-              <img :src="base.imgURL" alt="Base Image" width="200" height="200">
+              <img :src="base.imgURL" alt="Base Image">
             </div>
             <div class="baseList_box_content">
               <div class="baseList_box_content_name">
@@ -131,12 +131,16 @@ li{
 .baseList_box_img{
   margin-top:20px;
   width: 70%;
-  height: 70%;
+  height: 50%;
   object-fit: cover;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+.baseList_box_img img{
+  max-height: 200px;
+  max-width: 120px;
 }
 .baseList_box_content_name{
   margin-bottom: 2rem;
@@ -151,8 +155,14 @@ li{
 .base_name{
   font-size: 24px;
 } 
+.baseList_box_content_content {
+  overflow-y: scroll;
+}
+.baseList_box_content_content::-webkit-scrollbar{
+  width: 3px;
+}
 .baseList_box_content_content p {
-  margin: 0.5rem;
+  margin-bottom: 0.02rem;
 }
 
 .MachinInfo_container {
