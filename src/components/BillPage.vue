@@ -1,4 +1,8 @@
 <template>
+  <div class="back_btn" v-if="countdown > 0">
+    자동종료 <p>{{ countdown }}</p>
+  </div>
+
   <div class="receipt-container">
     <h1>Order Details</h1>
 
@@ -33,16 +37,39 @@
 
 <script>
 import { useOrderDataStore } from "@/stores/orderDataStore";
-
+import { useCartStore } from "@/stores/cart";
 export default {
   data() {
-    return {};
+    return {
+      countdown: 10,
+    };
   },
   computed: {
     // Get order data from the store
     orderData() {
       return useOrderDataStore().getOrderData;
     },
+  },
+  mounted() {
+    this.startCountdown();
+    this.cartReset();
+  },
+  methods: {
+    startCountdown() {
+      const countdownInterval = setInterval(() => {
+        if (this.countdown > 0) {
+          this.countdown--;
+        } else {
+          clearInterval(countdownInterval);
+          this.$router.push('/cocktail/main');
+        }
+      }, 1000); 
+    },
+    cartReset(){
+      useCartStore().cart = "";
+      useCartStore().cart_data = [];
+    }
+
   },
 };
 </script>
@@ -94,5 +121,15 @@ export default {
 .bill_recipe_header{
   margin-top:3rem;
   margin-bottom: 1rem;
+}
+
+.back_btn{
+  position: fixed;
+  top: 2rem;
+  right: 3rem;
+  font-size: 1rem;
+}
+.back_btn{
+  font-size: 1.4rem;
 }
 </style>

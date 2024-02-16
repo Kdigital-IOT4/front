@@ -11,8 +11,8 @@
 
         <div class="process_container_content_detail">
           <h2>
-              <span v-if="!isEndFlag"><span  class="userPhone">{{ userPhoneNumber }}</span> 님</span>
-              {{ isStartFlag ? '칵테일 제조를 시작하겠습니다.' : (isEndFlag ? `칵테일 제조가 완료되었습니다.  ${countdown}초 뒤에 페이지 리스트로 돌아갑니다.` : '칵테일 제조 중입니다...' )}}
+              <span v-if="isStartFlag"><span  class="userPhone">{{ userPhoneNumber }}</span> 님</span>
+              {{ isStartFlag ? '칵테일 제조를 시작하겠습니다.' : (isEndFlag ? `칵테일 제조가 완료되었습니다.  ${countdown}초 뒤에 페이지 리스트로 돌아갑니다.` : '원래 위치로 컵이 돌아올때까지 다음버튼을 누르지마세요' )}}
           </h2>
         </div>
 
@@ -53,7 +53,7 @@
         //보여줄 정보.. end
 
         //countDown & html 용 start
-        countdown: 10,
+        countdown: 5,
         isPaused : true,
         isStartFlag : true,
         isEndFlag : false,
@@ -155,7 +155,7 @@
                   if (gCode.includes('$J=G53X0Y0Z0F20000')) {
                     this.controllerStore.sendCommand(gCode);
                     //console.log("일시정지.. 새로운 컵을 받을때까지 다음 동작 스탑");
-                    alert("일시정지.. 새로운 컵을 받을때까지 다음 동작 스탑");
+                    //alert("일시정지.. 새로운 컵을 받을때까지 다음 동작 스탑");
                     this.isPaused = true;
                     this.CodeCommands.splice(i, 1);
                     i--;

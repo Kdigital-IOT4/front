@@ -198,13 +198,26 @@ li{
 
 .makeCocktailBtn{
   position:fixed;
-  left:95em;
-  top:45em;
+  right:0;
+  bottom: 8rem;
   border: 1px solid rgba(0, 0, 0, 0.8);
   transform: translate(-50%, -50%);
   background-color:  white;
-  width: 5em;
-  height: 3em;
-  padding-top: 2em;
+  width: 10rem;
+  height: 3rem;
+  padding-top: 1.2rem;
+  text-decoration: none;
+  color:rgba(0, 0, 0, 0.8);
+  background: linear-gradient(360deg, #b6b5b5, #696868);
+  font-size: 20px;
+}
+
+.makeCocktailBtn:hover{
+  padding-top: 1.5rem;
+  font-size: 24px;
+  width: 11rem;
+  height: 3.5rem;
+  transition-delay: 0.2s;
+  background: linear-gradient(360deg, #e7e7e7, #9e9e9e);
 }
 </style>
