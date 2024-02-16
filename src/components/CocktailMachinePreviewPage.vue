@@ -4,7 +4,7 @@
         <div v-for="cocktail in cocktails" :key="cocktail.seq">
             <div class="PreViewCockTail" @click="toggleExpand(cocktail.seq)">
                 <img class="PreViewImg" :src="getImageUrl(cocktail.fileURL)">
-                <p>{{cocktail.kr_Name}}</p>
+                <p class = "name_text">{{cocktail.kr_Name}}</p>
                 <div class="expand-content" v-if="CocktailsDetails[cocktail.seq - 1]" :id="'expand-content'+ (cocktail.seq-1)">
                     <p>가격 : {{CocktailsDetails[cocktail.seq-1].price}}</p>
                     <p>도수 : {{CocktailsDetails[cocktail.seq-1].alcohol}}</p>
@@ -88,20 +88,41 @@ export default {
 .PreViewCockTail{
     width: 10em;
     height: 11em;
-    background-color: gray;
-    border-radius: 10px;
+    background-color: black;
+    border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.4em;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #61b3e7,
+            0 0 0.8rem #61b3e7,
+            0 0 2.8rem #61b3e7,
+            inset 0 0 1.3rem #61b3e7; 
 }
 
 .PreViewImg{
     padding-top: 1em;
     width: 6em;
     height: 6em;
+    
 }
 
+.name_text{
+  color: white;
+}
 .expand-content {
     display: none;
     padding: 10px;
     background-color: #f1f1f1;
+    border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.4em;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #5d8aa8,
+            0 0 0.8rem #5d8aa8,
+            0 0 2.8rem #5d8aa8,
+            inset 0 0 1.3rem #5d8aa8; 
 }
 
 .container-PreView{

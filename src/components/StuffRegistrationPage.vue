@@ -1,8 +1,7 @@
 <template>
-   
     <div class="container-StuffInput">
         <machine-start-modal v-show="show" v-on:close="OnModal"></machine-start-modal>
-        <p>등록된 재료 목록</p>
+        <p class = 'stuff_title'>등록된 재료 목록</p>
         <div class="BaseList">
             <div v-for="x in 5" v-bind:key="x">
                 <p>{{ x }}.귤</p>
@@ -40,13 +39,22 @@ export default {
 
 <style>
 .container-StuffInput{
-    background: gray;
+    background: rgb(0, 0, 0);
     position:fixed;
     left: 45em;
     top: 30em;
     width: 40em;
     height: 45em;
     transform: translate(-50%, -50%);
+    border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.4em;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #eafef6,
+            0 0 0.8rem #eafef6,
+            0 0 2.8rem #eafef6,
+            inset 0 0 1.3rem #eafef6; 
 }
 
 .InputGroup{
@@ -58,9 +66,11 @@ export default {
 }
 
 .RegistrationBtn{
-    background-color: rgb(239, 255, 95);
     width: 10em;
     height: 5em;
 }
 
+.stuff_title{
+    color: white;
+}
 </style>
