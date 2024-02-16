@@ -7,7 +7,7 @@
       <ul class="baseList_container">
         <li v-for="base in machineData.baseList" :key="base.base_seq" class="baseList_box">
             <div class="baseList_box_img">
-              <img :src="base.imgURL" alt="Base Image" width="200" height="200">
+              <img :src="base.imgURL" alt="Base Image">
             </div>
             <div class="baseList_box_content">
               <div class="baseList_box_content_name">
@@ -126,19 +126,23 @@ li{
 .baseList_box_img{
   margin-top:20px;
   width: 70%;
-  height: 70%;
+  height: 50%;
   object-fit: cover;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
+.baseList_box_img img{
+  max-height: 200px;
+  max-width: 120px;
+}
 .baseList_box_content_name{
   margin-bottom: 2rem;
 }
 .baseList_box_content{
-  background-color: #ced4da;
-  border-top: 1.5px solid black; /* 윗부분 선 굵기와 색상 조절 */
+  background: rgba(1, 100, 31, 0.1);
+  border-top: 1px solid rgba(1, 100, 31, 0.1); 
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   margin-top:10px ;
@@ -146,8 +150,14 @@ li{
 .base_name{
   font-size: 24px;
 } 
+.baseList_box_content_content {
+  overflow-y: scroll;
+}
+.baseList_box_content_content::-webkit-scrollbar{
+  width: 3px;
+}
 .baseList_box_content_content p {
-  margin: 0.5rem;
+  margin-bottom: 0.02rem;
 }
 
 .MachinInfo_container {
@@ -183,13 +193,26 @@ li{
 
 .makeCocktailBtn{
   position:fixed;
-  left:95em;
-  top:45em;
+  right:0;
+  bottom: 8rem;
   border: 1px solid rgba(0, 0, 0, 0.8);
   transform: translate(-50%, -50%);
   background-color:  white;
-  width: 5em;
-  height: 3em;
-  padding-top: 2em;
+  width: 10rem;
+  height: 3rem;
+  padding-top: 1.2rem;
+  text-decoration: none;
+  color:rgba(0, 0, 0, 0.8);
+  background: linear-gradient(360deg, #b6b5b5, #696868);
+  font-size: 20px;
+}
+
+.makeCocktailBtn:hover{
+  padding-top: 1.5rem;
+  font-size: 24px;
+  width: 11rem;
+  height: 3.5rem;
+  transition-delay: 0.2s;
+  background: linear-gradient(360deg, #e7e7e7, #9e9e9e);
 }
 </style>

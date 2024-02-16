@@ -107,6 +107,7 @@ export default {
   margin-left: 3rem;
   width: 100px;
   height: 60px;
+  z-index: 2;
 }
 .pay_button{
   position: fixed;
@@ -115,6 +116,7 @@ export default {
   margin-right: 3rem;
   width: 100px;
   height: 60px;
+  z-index: 2;
 }
 .order_container {
 position: relative;
@@ -128,6 +130,7 @@ border-radius: 10px;
 box-sizing: border-box;
 padding-top: 1em;
 overflow-y: auto; 
+z-index: 1;
 }
 
 .cart_cocktail_box {
@@ -144,7 +147,8 @@ justify-content: center;
   flex-direction: row;
   margin-right: 20px;
   margin-top: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 5px 3px;
 }
 
 .cocktail_image_box {

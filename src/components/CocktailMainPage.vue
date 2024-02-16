@@ -5,16 +5,18 @@
     <!-- Display individual boxes for each cocktail -->
     <div class="cocktail-container">
       <div v-for="cocktail in cocktails" :key="cocktail.seq" class="cocktail-box" @click="fetchCocktailDetails(cocktail.seq)">
-        <div class="cocktail_box_img">
-          <img :src="getImageUrl(cocktail.imgURL)" alt="Cocktail Image" />
+        <div class="cocktail_box_dump">
+          <div class="cocktail_box_img">
+            <img :src="getImageUrl(cocktail.imgURL)" alt="Cocktail Image" />
+          </div>
+          <div class="cocktail_box_name">
+            <h3>{{ cocktail.kr_Name }} - {{ cocktail.en_Name }}</h3>
+          <!--<p>{{ cocktail.en_Name }}</p>-->
+          </div>
+          <div class="cocktail_box_price">
+            <h3>{{cocktail.price}} ₩</h3>
+          </div> 
         </div>
-        <div class="cocktail_box_name">
-          <h3>{{ cocktail.kr_Name }} - {{ cocktail.en_Name }}</h3>
-        <!--<p>{{ cocktail.en_Name }}</p>-->
-        </div>
-        <div class="cocktail_box_price">
-          <h3>{{cocktail.price}}원</h3>
-        </div> 
       </div>
     </div>
 
@@ -107,8 +109,12 @@ export default {
   display: flex;
   flex-direction: column;
   border : 1px solid #ccc;
-  margin-top : 3px;
-  margin-left: 5px;
+  margin-top : 3rem;
+  margin-left: 2rem;
+  box-shadow: rgba(243, 243, 243, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.cocktail-box:last-child{
+  margin-right: 2rem;
 }
 
 .cocktail-box h3,
@@ -119,26 +125,30 @@ export default {
 .cocktail_box_name {
   border-top : 1px solid #ccc;
   padding: 10px;
-  flex: 2; /* Adjust the flex ratio for the name box */
+  flex: 2; 
+  background: linear-gradient(360deg, #030303, #535353);
+  color: transparent;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 /* Image box styling */
 .cocktail_box_img {
   padding: 10px;
-  flex: 7; /* Adjust the flex ratio for the image box */
+  flex: 7; 
+  background: -webkit-linear-gradient(360deg , #faf4b4 , #fdf3c8);
 }
 
 /* Image styling */
 .cocktail_box_img img {
-  width: 100%; /* This makes the image take the full width of its container */
-  height: 400px; /* Maintain aspect ratio */
+  width: 100%;
+  height: 400px; 
   display: block;
 }
 
 /* Price box styling */
 .cocktail_box_price {
   padding: 5px;
-  flex: 1; /* Adjust the flex ratio for the price box */
+  flex: 1; 
 }
 .cocktail-box:hover{
     width : 25%;
@@ -160,6 +170,16 @@ export default {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+
+  position: fixed;
+  bottom: 3rem;
+  right: 7rem;  
+}
+.cocktail_cart:hover{
+  width: 7em;
+  height: 7em;
+  transition-delay: 0.2s;
+
 }
 img {
   max-width: 100%;
