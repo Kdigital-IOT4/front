@@ -8,10 +8,6 @@ WORKDIR /usr/src/app
 
 # 앱 종속성 설치
 COPY package*.json ./
-RUN npm install
-
-# 앱 소스 추가
-COPY . .
 
 # 앱 빌드
 RUN npm run build
